@@ -9,12 +9,12 @@ class AppConfig {
     brightness: Brightness.light,
     primary: Color.fromARGB(255, 239, 122, 59),
     onPrimary: Colors.white,
-    secondary: Color.fromARGB(255, 0, 221, 255),
+    secondary: Color.fromARGB(249, 0, 221, 255),
     onSecondary: Colors.black,
     error: Color(0xffb00020),
     onError: Colors.white,
     background: Color.fromARGB(255, 0, 11, 38),
-    onBackground: Colors.black,
+    onBackground: Color.fromARGB(255, 226, 243, 248),
     surface: Colors.white,
     onSurface: Colors.black,
   );
@@ -27,7 +27,7 @@ class AppConfig {
     error: Color(0xffcf6679),
     onError: Colors.black,
     background: Color.fromARGB(255, 0, 11, 38),
-    onBackground: Colors.white,
+    onBackground: Color.fromARGB(255, 226, 243, 248),
     surface: Color(0xff121212),
     onSurface: Colors.white,
   );

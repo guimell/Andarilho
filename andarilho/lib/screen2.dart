@@ -29,31 +29,42 @@ class _Screen2State extends State<Screen2> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      backgroundColor: AppConfig.lightColors.onBackground,
+      backgroundColor: AppConfig.lightColors.background,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: AppConfig.screenSize.width * 0.3,
-                  width: AppConfig.screenSize.width * 0.3,
-                  decoration: BoxDecoration(
-                    color: AppConfig.lightColors.background,
-                    borderRadius: BorderRadius.circular(360),
-                  ),
-                  child: Image.asset(
-                    "assets/images/LOGO DO ADMINSTRADOR.png",
+              Stack(children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                      height: AppConfig.screenSize.width * 0.3,
+                      width: AppConfig.screenSize.width * 0.3,
+                      decoration: BoxDecoration(
+                        color: AppConfig.lightColors.onPrimary,
+                        borderRadius: BorderRadius.circular(360),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    height: AppConfig.screenSize.width * 0.3,
+                    width: AppConfig.screenSize.width * 0.3,
+                    "assets/images/LOGO DO ADMINSTRADOR.png",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ]),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.only(bottom: 15.0),
                 child: Container(
                     width: AppConfig.screenSize.width * 0.7,
                     decoration: BoxDecoration(
-                      color: AppConfig.lightColors.background,
+                      color: AppConfig.lightColors.onPrimary,
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Column(
@@ -72,7 +83,7 @@ class _Screen2State extends State<Screen2> {
                                   text: 'ANDARILHO',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: AppConfig.lightColors.onPrimary,
+                                      color: AppConfig.lightColors.background,
                                       fontStyle: FontStyle.italic),
                                 ),
                               ],
@@ -81,7 +92,12 @@ class _Screen2State extends State<Screen2> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
-                          child: const Text("Escolha sua opção de cadastro"),
+                          child: Text(
+                            "Escolha sua opção de cadastro",
+                            style: TextStyle(
+                                color: AppConfig.lightColors.onSecondary,
+                                fontWeight: FontWeight.bold),
+                          ),
                         )
                       ],
                     )),
@@ -94,6 +110,7 @@ class _Screen2State extends State<Screen2> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
+                      // ignore: deprecated_member_use
                       primary: AppConfig.lightColors.primary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
@@ -123,7 +140,7 @@ class _Screen2State extends State<Screen2> {
                 },
                 child: Text(
                   "Saiba mais...",
-                  style: TextStyle(color: AppConfig.lightColors.onSecondary),
+                  style: TextStyle(color: AppConfig.lightColors.onPrimary),
                 ),
               ),
               AnimatedContainer(
@@ -135,7 +152,7 @@ class _Screen2State extends State<Screen2> {
                   "Encontre os serviços que deseja.Mais perto de você.\n"
                   "Encontre os melhores preços e avaliações\n"
                   "Tenha segurança garantida.",
-                  style: TextStyle(color: AppConfig.lightColors.onSecondary),
+                  style: TextStyle(color: AppConfig.lightColors.onPrimary),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -147,7 +164,8 @@ class _Screen2State extends State<Screen2> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: AppConfig.lightColors.background,
+                      // ignore: deprecated_member_use
+                      primary: AppConfig.lightColors.primary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
@@ -176,7 +194,7 @@ class _Screen2State extends State<Screen2> {
                 },
                 child: Text(
                   "Saiba mais...",
-                  style: TextStyle(color: AppConfig.lightColors.onSecondary),
+                  style: TextStyle(color: AppConfig.lightColors.onPrimary),
                 ),
               ),
               AnimatedContainer(
@@ -188,7 +206,7 @@ class _Screen2State extends State<Screen2> {
                   "Ganhe visibilidade e econtre mais clientes.\n"
                   "Tenha segurança contra golpes\n"
                   "Ganhe mais com mais praticidade.",
-                  style: TextStyle(color: AppConfig.lightColors.onSecondary),
+                  style: TextStyle(color: AppConfig.lightColors.onPrimary),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -203,6 +221,7 @@ class _Screen2State extends State<Screen2> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
+                      // ignore: deprecated_member_use
                       primary: AppConfig.lightColors.onPrimary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
@@ -225,7 +244,8 @@ class _Screen2State extends State<Screen2> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      primary: AppConfig.lightColors.background,
+                      // ignore: deprecated_member_use
+                      primary: AppConfig.lightColors.secondary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),

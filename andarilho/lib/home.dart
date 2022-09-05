@@ -149,6 +149,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
+                      // ignore: deprecated_member_use
                       primary: AppConfig.lightColors.onPrimary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
@@ -170,6 +171,7 @@ class _HomePageState extends State<HomePage> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
+                      // ignore: deprecated_member_use
                       primary: AppConfig.lightColors.secondary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
@@ -186,7 +188,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Text("Direitos reservados a minha pica"),
+                child: Text("Direitos reservados ao grupo"),
               )
             ],
           ),

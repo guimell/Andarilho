@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'config.dart';
-import 'screen2.dart';
+import 'cadastro1.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Screen2(
+                          builder: (context) => cadastro1(
                             title: 'Cadastro',
                           ),
                         ),

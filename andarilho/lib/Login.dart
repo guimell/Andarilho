@@ -3,18 +3,18 @@
 import 'package:flutter/material.dart';
 
 import 'config.dart';
-import 'cadastro1.dart';
+import 'cadastro.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -98,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.black),
@@ -142,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => cadastro1(
+                          builder: (context) => cadastro(
                             title: 'Cadastro',
                           ),
                         ),

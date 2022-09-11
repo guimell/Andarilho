@@ -1,11 +1,12 @@
 // ignore_for_file: unnecessary_new
+import 'package:andarilho/BottomNavBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'config.dart';
 
-class cadastro2 extends StatefulWidget {
-  cadastro2({Key? key, required this.title}) : super(key: key);
+class cadastro extends StatefulWidget {
+  cadastro({Key? key, required this.title}) : super(key: key);
 
   late double growHeigh = 0;
   late double growWidth = 0;
@@ -14,10 +15,10 @@ class cadastro2 extends StatefulWidget {
   final String title;
 
   @override
-  State<cadastro2> createState() => _cadastro2State();
+  State<cadastro> createState() => _cadastroState();
 }
 
-class _cadastro2State extends State<cadastro2> {
+class _cadastroState extends State<cadastro> {
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -119,10 +120,60 @@ class _cadastro2State extends State<cadastro2> {
                         borderSide: const BorderSide(color: Colors.black),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
-                      labelText: 'CEP :',
+                      labelText: 'Nome Completo :',
                     ),
                   ),
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                  width: AppConfig.screenSize.width * 0.6,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      labelText: 'E-mail :',
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: SizedBox(
+                      width: AppConfig.screenSize.width * 0.3,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          labelText: 'Genero :',
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: SizedBox(
+                      width: AppConfig.screenSize.width * 0.3,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          labelText: 'Data Nascimento :',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
               Padding(
@@ -135,40 +186,47 @@ class _cadastro2State extends State<cadastro2> {
                         borderSide: const BorderSide(color: Colors.black),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
-                      labelText: 'Endereço :',
+                      labelText: 'CPF :',
                     ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  width: AppConfig.screenSize.width * 0.6,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(30.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: SizedBox(
+                      width: AppConfig.screenSize.width * 0.3,
+                      child: TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          labelText: 'Senha :',
+                        ),
                       ),
-                      labelText: 'Complemento :',
                     ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  width: AppConfig.screenSize.width * 0.6,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(30.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: SizedBox(
+                      width: AppConfig.screenSize.width * 0.3,
+                      child: TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          labelText: 'Confirmar Senha :',
+                        ),
                       ),
-                      labelText: 'Ponto de referencia :',
                     ),
                   ),
-                ),
+                ],
               ),
 
               // Container(
@@ -193,7 +251,16 @@ class _cadastro2State extends State<cadastro2> {
                         ),
                       ),
                     ),
-                    onPressed: (() {}),
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BottomNavBar(
+                                  title: "Home",
+                                )),
+                        (Route<dynamic> route) => false,
+                      );
+                    },
                     child: Text(
                       "CONTINUAR",
                       style: TextStyle(

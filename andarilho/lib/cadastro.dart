@@ -19,6 +19,7 @@ class cadastro extends StatefulWidget {
 }
 
 class _cadastroState extends State<cadastro> {
+  late int selectedValue = 1;
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -143,21 +144,23 @@ class _cadastroState extends State<cadastro> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: SizedBox(
-                      width: AppConfig.screenSize.width * 0.3,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          labelText: 'Genero :',
+                  DropdownButton<int>(
+                      value: selectedValue,
+                      items: const [
+                        DropdownMenuItem(
+                          value: 1,
+                          child: Text("Male"),
                         ),
-                      ),
-                    ),
-                  ),
+                        DropdownMenuItem(
+                          value: 2,
+                          child: Text("Female"),
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedValue = value!;
+                        });
+                      }),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: SizedBox(

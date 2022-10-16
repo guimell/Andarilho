@@ -1,14 +1,17 @@
+import 'package:andarilho/avaliacoes.dart';
+import 'package:andarilho/pagamentos.dart';
 import 'package:andarilho/servicos.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'config.dart';
 
-class Inicio extends StatelessWidget {
-  final String texto;
+class Inicio extends StatefulWidget {
+  const Inicio({Key? key, title}) : super(key: key);
 
-  Inicio(this.texto);
+  @override
+  State<Inicio> createState() => _InicioState();
+}
 
+class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -17,8 +20,9 @@ class Inicio extends StatelessWidget {
     AppConfig.platformBrightness = MediaQuery.of(context).platformBrightness;
     return Scaffold(
       appBar: AppBar(
-        title: Text(texto),
+        title: Text("Inicio"),
       ),
+      bottomNavigationBar: AppConfig.navBar(context),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,13 +50,22 @@ class Inicio extends StatelessWidget {
                         width: AppConfig.screenSize.width * 0.25,
                       ),
                     ),
-                    Text("Serviços")
+                    const Text("Serviços")
                   ],
                 ),
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Avaliacao(
+                              title: "Avaliações",
+                            ),
+                          ),
+                        );
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -61,13 +74,21 @@ class Inicio extends StatelessWidget {
                         width: AppConfig.screenSize.width * 0.25,
                       ),
                     ),
-                    Text("Avaliações")
+                    const Text("Avaliações")
                   ],
                 ),
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const Pagamentos(title: "Pagamentos"),
+                          ),
+                        );
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -76,7 +97,7 @@ class Inicio extends StatelessWidget {
                         width: AppConfig.screenSize.width * 0.25,
                       ),
                     ),
-                    Text("Pagamentos")
+                    const Text("Pagamentos")
                   ],
                 ),
               ],
@@ -84,24 +105,30 @@ class Inicio extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 50),
               child: Stack(children: [
-                Container(
-                  height: AppConfig.screenSize.height * 0.4,
-                  width: AppConfig.screenSize.width,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.amber),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    height: AppConfig.screenSize.height * 0.4,
+                    width: AppConfig.screenSize.width * 0.9,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.amber),
+                  ),
                 ),
                 Align(
                   alignment: Alignment.center,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                  child: SizedBox(
+                    width: AppConfig.screenSize.width * 0.9,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(30.0),
                         ),
-                        borderRadius: BorderRadius.circular(30.0),
+                        labelText: 'Pesquisar...',
                       ),
-                      labelText: 'Pesquisar...',
                     ),
                   ),
                 ),

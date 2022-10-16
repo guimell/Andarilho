@@ -1,9 +1,10 @@
+import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';
 
-class Pagina3 extends StatelessWidget {
+class Perfil extends StatelessWidget {
   final String texto;
 
-  Pagina3(this.texto);
+  Perfil(this.texto);
 
   @override
   Widget build(BuildContext context) {

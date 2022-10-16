@@ -1,4 +1,8 @@
+import 'package:andarilho/inicio.dart';
+import 'package:andarilho/perfil.dart';
 import 'package:flutter/material.dart';
+
+import 'historico.dart';
 
 class AppConfig {
   static Size screenSize = const Size(0, 0);
@@ -31,4 +35,42 @@ class AppConfig {
     surface: Color(0xff121212),
     onSurface: Colors.white,
   );
+  static BottomNavigationBar navBar(context) {
+    int indiceAtual = 0;
+
+    final List<Widget> telas = [
+      Inicio("Inicio"),
+      Perfil("Meu Perfil"),
+      Historico("Historico"),
+    ];
+
+    void onTabTapped(int index) {
+      indiceAtual = index;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => telas[indiceAtual],
+        ),
+      );
+    }
+
+    return BottomNavigationBar(
+      currentIndex: indiceAtual,
+      onTap: onTabTapped,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: "Inicio",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.format_list_bulleted_rounded),
+          label: "Perfil",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.favorite),
+          label: "Historico",
+        ),
+      ],
+    );
+  }
 }

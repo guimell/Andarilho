@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'config.dart';
 
-class cadastro extends StatefulWidget {
-  cadastro({Key? key, required this.title}) : super(key: key);
+class Cadastro extends StatefulWidget {
+  Cadastro({Key? key, required this.title}) : super(key: key);
 
   late double growHeigh = 0;
   late double growWidth = 0;
@@ -15,10 +15,10 @@ class cadastro extends StatefulWidget {
   final String title;
 
   @override
-  State<cadastro> createState() => _cadastroState();
+  State<Cadastro> createState() => _CadastroState();
 }
 
-class _cadastroState extends State<cadastro> {
+class _CadastroState extends State<Cadastro> {
   late int selectedValue = 1;
   @override
   Widget build(BuildContext context) {

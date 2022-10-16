@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_new
-import 'package:andarilho/pagina1.dart';
-import 'package:andarilho/pagina2.dart';
-import 'package:andarilho/pagina3.dart';
+import 'package:andarilho/inicio.dart';
+import 'package:andarilho/perfil.dart';
+import 'package:andarilho/historico.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,9 +19,9 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int _indiceAtual = 0;
   final List<Widget> _telas = [
-    Pagina1("Minha conta"),
-    Pagina2("Meus pedidos"),
-    Pagina3("Favoritos")
+    Inicio("Inicio"),
+    Perfil("Meu Perfil"),
+    Historico("Historico"),
   ];
 
   @override
@@ -34,15 +34,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: "Minha conta",
+            label: "Inicio",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            label: "Meus pedidos",
+            icon: Icon(Icons.format_list_bulleted_rounded),
+            label: "Perfil",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: "favoritos",
+            label: "Historico",
           ),
         ],
       ),

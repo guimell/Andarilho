@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';
 
-class Pagina1 extends StatelessWidget {
+class Historico extends StatelessWidget {
   final String texto;
 
-  Pagina1(this.texto);
+  Historico(this.texto);
 
   @override
   Widget build(BuildContext context) {

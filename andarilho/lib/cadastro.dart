@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_new
-import 'package:andarilho/BottomNavBar.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:andarilho/inicio.dart';
 import 'package:flutter/material.dart';
 
 import 'config.dart';
@@ -258,8 +258,8 @@ class _CadastroState extends State<Cadastro> {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => BottomNavBar(
-                                  title: "Home",
+                            builder: (context) => const Inicio(
+                                  title: "Inicio",
                                 )),
                         (Route<dynamic> route) => false,
                       );

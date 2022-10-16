@@ -39,18 +39,23 @@ class AppConfig {
     int indiceAtual = 0;
 
     final List<Widget> telas = [
-      Inicio("Inicio"),
-      Perfil("Meu Perfil"),
-      Historico("Historico"),
+      const Inicio(
+        title: "inicio",
+      ),
+      const Perfil(
+        title: "Perfil",
+      ),
+      const Historico(
+        title: "Historico",
+      ),
     ];
 
     void onTabTapped(int index) {
       indiceAtual = index;
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(
-          builder: (context) => telas[indiceAtual],
-        ),
+        MaterialPageRoute(builder: (context) => telas[indiceAtual]),
+        (Route<dynamic> route) => false,
       );
     }
 

@@ -86,7 +86,7 @@ class _PagamentosState extends State<Pagamentos> {
               "Veja os pagamentos e andamentos de suas contatrações",
               textAlign: TextAlign.center,
             ),
-            AvaliaContainer()
+            const PagamentoContainer()
           ],
         ),
       ),

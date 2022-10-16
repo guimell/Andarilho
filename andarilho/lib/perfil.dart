@@ -1,25 +1,26 @@
 import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class Perfil extends StatelessWidget {
-  final String texto;
+class Perfil extends StatefulWidget {
+  const Perfil({Key? key, title}) : super(key: key);
 
-  Perfil(this.texto);
+  @override
+  State<Perfil> createState() => _PerfilState();
+}
 
+class _PerfilState extends State<Perfil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(texto),
+        title: Text("Perfil"),
       ),
+      bottomNavigationBar: AppConfig.navBar(context),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: Text(texto),
-            )
-          ],
+          children: [],
         ),
       ),
     );

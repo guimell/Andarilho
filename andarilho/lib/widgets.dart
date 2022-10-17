@@ -1,6 +1,8 @@
 import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';
 
+import 'avaliacoes.dart';
+
 class AvaliaContainer extends StatelessWidget {
   const AvaliaContainer({Key? key}) : super(key: key);
 
@@ -121,6 +123,23 @@ class PagamentoContainer extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class InicioContainer extends StatelessWidget {
+  const InicioContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10), color: Colors.amber),
+        height: AppConfig.screenSize.height * 0.13,
+        width: AppConfig.screenSize.width * 0.25,
       ),
     );
   }

@@ -22,80 +22,82 @@ class _AvaliacaoState extends State<Avaliacao> {
       ),
       bottomNavigationBar: AppConfig.navBar(context),
       body: Center(
-        child: Column(
-          children: [
-            Stack(children: [
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    height: AppConfig.screenSize.width * 0.3,
-                    width: AppConfig.screenSize.width * 0.3,
-                    decoration: BoxDecoration(
-                      color: AppConfig.lightColors.onPrimary,
-                      borderRadius: BorderRadius.circular(360),
+        child: FittedBox(
+          child: Column(
+            children: [
+              Stack(children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Container(
+                      height: AppConfig.screenSize.width * 0.3,
+                      width: AppConfig.screenSize.width * 0.3,
+                      decoration: BoxDecoration(
+                        color: AppConfig.lightColors.onPrimary,
+                        borderRadius: BorderRadius.circular(360),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  height: AppConfig.screenSize.width * 0.3,
-                  width: AppConfig.screenSize.width * 0.3,
-                  "assets/images/LOGO DO ADMINSTRADOR.png",
-                  fit: BoxFit.cover,
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    height: AppConfig.screenSize.width * 0.3,
+                    width: AppConfig.screenSize.width * 0.3,
+                    "assets/images/LOGO DO ADMINSTRADOR.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-            ]),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 15.0),
-              child: Container(
-                width: AppConfig.screenSize.width * 0.7,
-                decoration: BoxDecoration(
-                  color: AppConfig.lightColors.onPrimary,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'Avaliar',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              color: AppConfig.lightColors.primary),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Serviços',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: AppConfig.lightColors.background,
-                                  fontStyle: FontStyle.italic),
-                            ),
-                          ],
+              ]),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15.0),
+                child: Container(
+                  width: AppConfig.screenSize.width * 0.7,
+                  decoration: BoxDecoration(
+                    color: AppConfig.lightColors.onPrimary,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'Avaliar',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                color: AppConfig.lightColors.primary),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Serviços',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppConfig.lightColors.background,
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      "Avalie os serviços",
-                      style: TextStyle(
-                          color: AppConfig.darkColors.onSecondary,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                      Text(
+                        "Avalie os serviços",
+                        style: TextStyle(
+                            color: AppConfig.darkColors.onSecondary,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const Text("Faça sua avaliação dos ultimos serviços contratados"),
-            const AvaliaContainer(),
-            const AvaliaContainer(),
-            const AvaliaContainer(),
-            const AvaliaContainer(),
-          ],
+              const Text("Faça sua avaliação dos ultimos serviços contratados"),
+              const AvaliaContainer(),
+              const AvaliaContainer(),
+              const AvaliaContainer(),
+              const AvaliaContainer(),
+            ],
+          ),
         ),
       ),
     );

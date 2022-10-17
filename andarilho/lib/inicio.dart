@@ -1,6 +1,7 @@
 import 'package:andarilho/avaliacoes.dart';
 import 'package:andarilho/pagamentos.dart';
 import 'package:andarilho/servicos.dart';
+import 'package:andarilho/widgets.dart';
 import 'package:flutter/material.dart';
 import 'config.dart';
 
@@ -24,117 +25,98 @@ class _InicioState extends State<Inicio> {
       ),
       bottomNavigationBar: AppConfig.navBar(context),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const Servicos(title: "Serviços"),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.amber),
-                        height: AppConfig.screenSize.height * 0.13,
-                        width: AppConfig.screenSize.width * 0.25,
-                      ),
+        child: FittedBox(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const Servicos(title: "Serviços"),
+                              ),
+                            );
+                          },
+                          child: const InicioContainer()),
+                      const Text("Serviços")
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Avaliacao(
+                                  title: "Avaliações",
+                                ),
+                              ),
+                            );
+                          },
+                          child: const InicioContainer()),
+                      const Text("Avaliações")
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const Pagamentos(title: "Pagamentos"),
+                              ),
+                            );
+                          },
+                          child: const InicioContainer()),
+                      const Text("Pagamentos")
+                    ],
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 50),
+                child: Stack(children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      height: AppConfig.screenSize.height * 0.4,
+                      width: AppConfig.screenSize.width * 0.9,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.amber),
                     ),
-                    const Text("Serviços")
-                  ],
-                ),
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Avaliacao(
-                              title: "Avaliações",
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      width: AppConfig.screenSize.width * 0.9,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.black,
                             ),
+                            borderRadius: BorderRadius.circular(30.0),
                           ),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.amber),
-                        height: AppConfig.screenSize.height * 0.13,
-                        width: AppConfig.screenSize.width * 0.25,
-                      ),
-                    ),
-                    const Text("Avaliações")
-                  ],
-                ),
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const Pagamentos(title: "Pagamentos"),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.amber),
-                        height: AppConfig.screenSize.height * 0.13,
-                        width: AppConfig.screenSize.width * 0.25,
-                      ),
-                    ),
-                    const Text("Pagamentos")
-                  ],
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50),
-              child: Stack(children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: AppConfig.screenSize.height * 0.4,
-                    width: AppConfig.screenSize.width * 0.9,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.amber),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    width: AppConfig.screenSize.width * 0.9,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.black,
-                          ),
-                          borderRadius: BorderRadius.circular(30.0),
+                          labelText: 'Pesquisar...',
                         ),
-                        labelText: 'Pesquisar...',
                       ),
                     ),
                   ),
-                ),
-              ]),
-            )
-          ],
+                ]),
+              )
+            ],
+          ),
         ),
       ),
     );

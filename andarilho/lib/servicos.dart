@@ -30,7 +30,7 @@ class _ServicosState extends State<Servicos> {
                 Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Container(
                       height: AppConfig.screenSize.width * 0.3,
                       width: AppConfig.screenSize.width * 0.3,

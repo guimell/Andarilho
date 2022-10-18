@@ -21,7 +21,7 @@ class _InicioState extends State<Inicio> {
     AppConfig.platformBrightness = MediaQuery.of(context).platformBrightness;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Inicio"),
+        title: const Text("Inicio"),
       ),
       bottomNavigationBar: AppConfig.navBar(context),
       body: Center(
@@ -29,6 +29,22 @@ class _InicioState extends State<Inicio> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Row(
+                children: [
+                  SizedBox(
+                    height: AppConfig.screenSize.height * 0.2,
+                    width: AppConfig.screenSize.width * 0.2,
+                    child: Image.asset(
+                      "assets/images/Logo cliente andarilho.png",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  const Text(
+                    "Andarilho",
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -44,40 +60,47 @@ class _InicioState extends State<Inicio> {
                               ),
                             );
                           },
-                          child: const InicioContainer()),
+                          child: const InicioContainer(
+                            image: "assets/images/avaliacoes.png",
+                          )),
                       const Text("Serviços")
                     ],
                   ),
                   Column(
                     children: [
                       InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Avaliacao(
-                                  title: "Avaliações",
-                                ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Avaliacao(
+                                title: "Avaliações",
                               ),
-                            );
-                          },
-                          child: const InicioContainer()),
+                            ),
+                          );
+                        },
+                        child: const InicioContainer(
+                            image: "assets/images/avaliacoes.png"),
+                      ),
                       const Text("Avaliações")
                     ],
                   ),
                   Column(
                     children: [
                       InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const Pagamentos(title: "Pagamentos"),
-                              ),
-                            );
-                          },
-                          child: const InicioContainer()),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const Pagamentos(title: "Pagamentos"),
+                            ),
+                          );
+                        },
+                        child: const InicioContainer(
+                            image:
+                                "assets/images/Aplicativo Andarilho (7).png"),
+                      ),
                       const Text("Pagamentos")
                     ],
                   ),

@@ -47,22 +47,21 @@ class _CadastroState extends State<Cadastro> {
         title: Text(widget.title),
       ),
       backgroundColor: AppConfig.lightColors.background,
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: FittedBox(
           child: Column(
             children: <Widget>[
               Stack(children: [
                 Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Container(
                       height: AppConfig.screenSize.width * 0.3,
                       width: AppConfig.screenSize.width * 0.3,
                       decoration: BoxDecoration(
-                        color: AppConfig.lightColors.onPrimary,
-                        borderRadius: BorderRadius.circular(360),
-                      ),
+                          color: AppConfig.lightColors.onPrimary,
+                          shape: BoxShape.circle),
                     ),
                   ),
                 ),

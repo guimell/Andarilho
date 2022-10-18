@@ -26,8 +26,8 @@ class _LoginPageState extends State<LoginPage> {
         title: Text(widget.title),
       ),
       backgroundColor: AppConfig.lightColors.background,
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: FittedBox(
           child: Column(
             children: <Widget>[
               Padding(

@@ -129,7 +129,8 @@ class PagamentoContainer extends StatelessWidget {
 }
 
 class InicioContainer extends StatelessWidget {
-  const InicioContainer({super.key});
+  final String image;
+  const InicioContainer({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -140,6 +141,31 @@ class InicioContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(10), color: Colors.amber),
         height: AppConfig.screenSize.height * 0.13,
         width: AppConfig.screenSize.width * 0.25,
+        child: Image.asset(image),
+      ),
+    );
+  }
+}
+
+class ButtonPerfil extends StatelessWidget {
+  final text;
+  const ButtonPerfil({Key? key, this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: SizedBox(
+        width: AppConfig.screenSize.width * 0.5,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(20),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              primary: AppConfig.lightColors.primary),
+          onPressed: () {},
+          child: Text(text),
+        ),
       ),
     );
   }

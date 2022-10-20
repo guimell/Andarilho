@@ -61,7 +61,7 @@ class _InicioState extends State<Inicio> {
                             );
                           },
                           child: const InicioContainer(
-                            image: "assets/images/avaliacoes.png",
+                            image: "assets/images/Aplicativo Andarilho (7).png",
                           )),
                       const Text("Serviços")
                     ],
@@ -98,8 +98,7 @@ class _InicioState extends State<Inicio> {
                           );
                         },
                         child: const InicioContainer(
-                            image:
-                                "assets/images/Aplicativo Andarilho (7).png"),
+                            image: "assets/images/pagamentos.png"),
                       ),
                       const Text("Pagamentos")
                     ],

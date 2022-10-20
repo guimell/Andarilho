@@ -138,7 +138,8 @@ class InicioContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.amber),
+            borderRadius: BorderRadius.circular(10),
+            color: AppConfig.darkColors.onPrimary),
         height: AppConfig.screenSize.height * 0.13,
         width: AppConfig.screenSize.width * 0.25,
         child: Image.asset(image),

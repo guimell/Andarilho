@@ -1,9 +1,10 @@
-// ignore_for_file: unnecessary_new
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
 import 'config.dart';
 import 'cadastro.dart';
+import 'inicio.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
@@ -15,6 +16,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController email = TextEditingController();
+  TextEditingController senha = TextEditingController();
+  bool isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -82,6 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    controller: email,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.black),
@@ -98,8 +104,18 @@ class _LoginPageState extends State<LoginPage> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
-                    obscureText: true,
+                    controller: senha,
+                    obscureText: isObscure,
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          icon: Icon(isObscure
+                              ? Icons.visibility_off
+                              : Icons.visibility),
+                          onPressed: () {
+                            setState(() {
+                              isObscure = !isObscure;
+                            });
+                          }),
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.black),
                         borderRadius: BorderRadius.circular(30.0),
@@ -121,7 +137,45 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    onPressed: (() {}),
+                    onPressed: (() {
+                      log("Email:${email.text} Senha:${senha.text}");
+                      if (email.text == "admin" && senha.text == "admin") {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Inicio(
+                                    title: "Inicio",
+                                  )),
+                          (Route<dynamic> route) => false,
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: const Text("Dados Incorretos"),
+                            content: const Text("Tente novamente"),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                  email.clear();
+                                  senha.clear();
+                                },
+                                child: Container(
+                                  color: AppConfig.lightColors.primary,
+                                  padding: const EdgeInsets.all(14),
+                                  child: Text(
+                                    "okay",
+                                    style: TextStyle(
+                                        color: AppConfig.lightColors.onPrimary),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    }),
                     child: Text(
                       "CONTINUAR",
                       style: TextStyle(

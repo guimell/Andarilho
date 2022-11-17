@@ -150,7 +150,8 @@ class InicioContainer extends StatelessWidget {
 
 class ButtonPerfil extends StatelessWidget {
   final text;
-  const ButtonPerfil({Key? key, this.text}) : super(key: key);
+  final classe;
+  const ButtonPerfil({Key? key, this.text, this.classe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -164,8 +165,39 @@ class ButtonPerfil extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
               primary: AppConfig.lightColors.primary),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => classe),
+            );
+          },
           child: Text(text),
+        ),
+      ),
+    );
+  }
+}
+
+class ConfigPerfilForms extends StatefulWidget {
+  final text;
+  const ConfigPerfilForms({super.key, this.text});
+
+  @override
+  State<ConfigPerfilForms> createState() => _ConfigPerfilFormsState();
+}
+
+class _ConfigPerfilFormsState extends State<ConfigPerfilForms> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextFormField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          labelText: widget.text,
         ),
       ),
     );

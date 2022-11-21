@@ -1,3 +1,4 @@
+import 'package:andarilho/cadastro.dart';
 import 'package:andarilho/centralDeAjuda.dart';
 import 'package:andarilho/config.dart';
 import 'package:andarilho/configPerfil.dart';
@@ -14,6 +15,7 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
+  var nome = Cadastro.cadastroNomeCompleto;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,15 +27,6 @@ class _PerfilState extends State<Perfil> {
         child: FittedBox(
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 100, 0),
-                    child: Text("Andarilha"),
-                  ),
-                ],
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -61,8 +54,8 @@ class _PerfilState extends State<Perfil> {
                         color: Colors.amber,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Text(
-                        "Maria Roberta",
+                      child: Text(
+                        nome.text,
                         textAlign: TextAlign.center,
                       ),
                     ),

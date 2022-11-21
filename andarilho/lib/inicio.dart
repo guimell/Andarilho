@@ -4,6 +4,7 @@ import 'package:andarilho/servicos.dart';
 import 'package:andarilho/widgets.dart';
 import 'package:flutter/material.dart';
 import 'config.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Inicio extends StatefulWidget {
   const Inicio({Key? key, title}) : super(key: key);
@@ -13,6 +14,14 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+  late GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(45.521563, -122.677433);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -116,6 +125,13 @@ class _InicioState extends State<Inicio> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.amber),
+                      child: GoogleMap(
+                        onMapCreated: _onMapCreated,
+                        initialCameraPosition: CameraPosition(
+                          target: _center,
+                          zoom: 11.0,
+                        ),
+                      ),
                     ),
                   ),
                   Align(

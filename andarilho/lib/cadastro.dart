@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_new
 
+import 'dart:developer';
+
 import 'package:andarilho/inicio.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,7 @@ class Cadastro extends StatefulWidget {
   late double growWidth = 0;
   late double growHeigh2 = 0;
   late double growWidth2 = 0;
+  static TextEditingController cadastroNomeCompleto = TextEditingController();
   final String title;
 
   @override
@@ -20,6 +23,11 @@ class Cadastro extends StatefulWidget {
 
 class _CadastroState extends State<Cadastro> {
   late int selectedValue = 1;
+
+  TextEditingController cadastroEmail = TextEditingController();
+  TextEditingController cadastroCPF = TextEditingController();
+  TextEditingController cadastroSenha = TextEditingController();
+  TextEditingController cadastroConfirmaSenha = TextEditingController();
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -115,6 +123,7 @@ class _CadastroState extends State<Cadastro> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    controller: Cadastro.cadastroNomeCompleto,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.black),
@@ -130,6 +139,7 @@ class _CadastroState extends State<Cadastro> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    controller: cadastroEmail,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.black),
@@ -183,6 +193,7 @@ class _CadastroState extends State<Cadastro> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    controller: cadastroCPF,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.black),
@@ -201,6 +212,7 @@ class _CadastroState extends State<Cadastro> {
                     child: SizedBox(
                       width: AppConfig.screenSize.width * 0.3,
                       child: TextFormField(
+                        controller: cadastroSenha,
                         obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -217,6 +229,7 @@ class _CadastroState extends State<Cadastro> {
                     child: SizedBox(
                       width: AppConfig.screenSize.width * 0.3,
                       child: TextFormField(
+                        controller: cadastroConfirmaSenha,
                         obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -254,6 +267,13 @@ class _CadastroState extends State<Cadastro> {
                       ),
                     ),
                     onPressed: () {
+                      log("Nome Completo:${Cadastro.cadastroNomeCompleto.text} "
+                          " CPF:${cadastroCPF.text} Email:${cadastroEmail.text} "
+                          " Senha:${cadastroSenha.text} "
+                          " Confirma Senha:${cadastroConfirmaSenha.text}");
+                      if (Cadastro.cadastroNomeCompleto.text == "") {
+                        log("null");
+                      }
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

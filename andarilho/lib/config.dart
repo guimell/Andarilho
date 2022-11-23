@@ -1,5 +1,5 @@
 import 'package:andarilho/inicio.dart';
-import 'package:andarilho/perfil.dart';
+import 'package:andarilho/configuracao.dart';
 import 'package:flutter/material.dart';
 
 import 'historico.dart';
@@ -42,11 +42,11 @@ class AppConfig {
       const Inicio(
         title: "inicio",
       ),
-      const Perfil(
-        title: "Perfil",
-      ),
       const Historico(
         title: "Historico",
+      ),
+      const Configuracao(
+        title: "Configuração",
       ),
     ];
 
@@ -68,12 +68,12 @@ class AppConfig {
           label: "Inicio",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.format_list_bulleted_rounded),
-          label: "Perfil",
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
           label: "Historico",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          label: "Configuração",
         ),
       ],
     );

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';
 
@@ -200,6 +202,46 @@ class _ConfigPerfilFormsState extends State<ConfigPerfilForms> {
           labelText: widget.text,
         ),
       ),
+    );
+  }
+}
+
+class ContainerChat extends StatefulWidget {
+  const ContainerChat({super.key});
+
+  @override
+  State<ContainerChat> createState() => _ContainerChatState();
+}
+
+class _ContainerChatState extends State<ContainerChat> {
+  var chatStatus;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        InkWell(
+          child: Icon(
+            Icons.chat,
+            size: 40,
+            color: chatStatus == true ? Colors.green : Colors.red,
+          ),
+          onTap: () {},
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppConfig.lightColors.primary,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            width: AppConfig.screenSize.width * 0.2,
+            child: const Text(
+              "data",
+              textAlign: TextAlign.center,
+            ),
+          ),
+        )
+      ],
     );
   }
 }

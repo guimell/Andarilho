@@ -17,7 +17,7 @@ class _ConfigPerfilState extends State<ConfigPerfil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Perfil"),
+        title: const Text("Editar Perfil"),
       ),
       bottomNavigationBar: AppConfig.navBar(context),
       body: Center(

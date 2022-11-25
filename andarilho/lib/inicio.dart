@@ -3,6 +3,7 @@ import 'package:andarilho/pagamentos.dart';
 import 'package:andarilho/servicos.dart';
 import 'package:andarilho/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'config.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -16,10 +17,37 @@ class Inicio extends StatefulWidget {
 class _InicioState extends State<Inicio> {
   late GoogleMapController mapController;
 
+  static const CameraPosition initialCameraPosition =
+      CameraPosition(target: LatLng(45.521563, -122.677433), zoom: 14);
+
+  Set<Marker> markers = {};
+
   final LatLng _center = const LatLng(45.521563, -122.677433);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
+  }
+
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error("Location services are disabled");
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error("Location permission denied");
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error("Location permission are permanently denied");
+    }
+    Position position = await Geolocator.getCurrentPosition();
+    return position;
   }
 
   @override
@@ -126,12 +154,39 @@ class _InicioState extends State<Inicio> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.amber),
                       child: GoogleMap(
-                        onMapCreated: _onMapCreated,
-                        initialCameraPosition: CameraPosition(
-                          target: _center,
-                          zoom: 11.0,
-                        ),
-                      ),
+                          onMapCreated: _onMapCreated,
+                          markers: markers,
+                          zoomControlsEnabled: false,
+                          mapType: MapType.normal,
+                          initialCameraPosition: initialCameraPosition),
+                    ),
+                  ),
+                  Positioned(
+                    right: 10,
+                    bottom: 10,
+                    child: FloatingActionButton.extended(
+                      onPressed: () async {
+                        Position position = await determinePosition();
+                        mapController.animateCamera(
+                          CameraUpdate.newCameraPosition(
+                            CameraPosition(
+                                target: LatLng(
+                                    position.latitude, position.longitude),
+                                zoom: 14),
+                          ),
+                        );
+                        markers.clear();
+                        markers.add(
+                          Marker(
+                            markerId: const MarkerId("currentLocation"),
+                            position:
+                                LatLng(position.latitude, position.longitude),
+                          ),
+                        );
+                        setState(() {});
+                      },
+                      label: const Text("Minha localização"),
+                      icon: Icon(Icons.location_on),
                     ),
                   ),
                   Align(

@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import 'config.dart';
 import 'cadastro.dart';
@@ -19,6 +21,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController email = TextEditingController();
   TextEditingController senha = TextEditingController();
+  String token = "";
   bool isObscure = true;
 
   @override
@@ -145,15 +148,59 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    onPressed: (() {
+                    onPressed: (() async {
+                      final uri = Uri.parse(
+                          'https://api-andarilho.onrender.com/user/login');
+                      final headers = {'Content-Type': 'application/json'};
+                      Map<String, dynamic> body = {
+                        'email': email.text,
+                        'senha': senha.text,
+                      };
+                      String jsonBody = json.encode(body);
+                      final encoding = Encoding.getByName('utf-8');
+
+                      Response response = await post(
+                        uri,
+                        headers: headers,
+                        body: jsonBody,
+                        encoding: encoding,
+                      );
+
+                      int statusCode = response.statusCode;
+                      String responseBody = response.body;
+                      log(responseBody);
+                      token = await jsonDecode(response.body)["data"]["token"];
+                      log(token);
+
                       log("Email:${email.text} Senha:${senha.text}");
-                      if (email.text == "admin" && senha.text == "admin") {
+                      if (statusCode == 200) {
+                        final uri = Uri.parse(
+                            'https://api-andarilho.onrender.com/user/test');
+                        final headers = {
+                          'Content-Type': 'application/json',
+                          "x-access-token": token
+                        };
+
+                        String jsonBody = json.encode(body);
+                        final encoding = Encoding.getByName('utf-8');
+
+                        Response response = await get(
+                          uri,
+                          headers: headers,
+                        );
+
+                        int statusCode = response.statusCode;
+                        String responseBody = response.body;
+                        log(responseBody);
+
+                        // ignore: use_build_context_synchronously
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Inicio(
-                                    title: "Inicio",
-                                  )),
+                            builder: (context) => const Inicio(
+                              title: "Inicio",
+                            ),
+                          ),
                           (Route<dynamic> route) => false,
                         );
                       } else {

@@ -1,19 +1,16 @@
 // ignore_for_file: unnecessary_new
 
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:andarilho/inicio.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart';
 import 'config.dart';
 
 class Cadastro extends StatefulWidget {
   Cadastro({Key? key, required this.title}) : super(key: key);
 
-  late double growHeigh = 0;
-  late double growWidth = 0;
-  late double growHeigh2 = 0;
-  late double growWidth2 = 0;
   static TextEditingController cadastroNomeCompleto = TextEditingController();
   final String title;
 
@@ -28,6 +25,7 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController cadastroCPF = TextEditingController();
   TextEditingController cadastroSenha = TextEditingController();
   TextEditingController cadastroConfirmaSenha = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -266,22 +264,69 @@ class _CadastroState extends State<Cadastro> {
                         ),
                       ),
                     ),
-                    onPressed: () {
-                      log("Nome Completo:${Cadastro.cadastroNomeCompleto.text} "
-                          " CPF:${cadastroCPF.text} Email:${cadastroEmail.text} "
-                          " Senha:${cadastroSenha.text} "
-                          " Confirma Senha:${cadastroConfirmaSenha.text}");
-                      if (Cadastro.cadastroNomeCompleto.text == "") {
-                        log("null");
-                      }
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Inicio(
-                                  title: "Inicio",
-                                )),
-                        (Route<dynamic> route) => false,
+                    onPressed: () async {
+                      final uri = Uri.parse(
+                          'https://api-andarilho.onrender.com/user/signup');
+                      final headers = {'Content-Type': 'application/json'};
+                      Map<String, dynamic> body = {
+                        'nome': Cadastro.cadastroNomeCompleto.text,
+                        'email': cadastroEmail.text,
+                        'senha': cadastroSenha.text,
+                        'role': "role",
+                        'sexo': 'bob',
+                        'dataNascimento': "a",
+                        'cpf': cadastroCPF.text
+                      };
+                      String jsonBody = json.encode(body);
+                      final encoding = Encoding.getByName('utf-8');
+
+                      Response response = await post(
+                        uri,
+                        headers: headers,
+                        body: jsonBody,
+                        encoding: encoding,
                       );
+
+                      int statusCode = response.statusCode;
+                      // ignore: unused_local_variable
+                      String responseBody = response.body;
+
+                      if (statusCode == 200) {
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Inicio(
+                                    title: "Inicio",
+                                  )),
+                          (Route<dynamic> route) => false,
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: Text(
+                                jsonDecode(response.body)["errors"]["detail"]),
+                            content: const Text("Tente novamente"),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: Container(
+                                  color: AppConfig.lightColors.primary,
+                                  padding: const EdgeInsets.all(14),
+                                  child: Text(
+                                    "okay",
+                                    style: TextStyle(
+                                        color: AppConfig.lightColors.onPrimary),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
                     },
                     child: Text(
                       "CONTINUAR",

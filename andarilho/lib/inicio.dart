@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:andarilho/avaliacoes.dart';
 import 'package:andarilho/pagamentos.dart';
 import 'package:andarilho/servicos.dart';
@@ -15,41 +18,7 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
-  late GoogleMapController mapController;
-
-  static const CameraPosition initialCameraPosition =
-      CameraPosition(target: LatLng(45.521563, -122.677433), zoom: 14);
-
-  Set<Marker> markers = {};
-
-  final LatLng _center = const LatLng(45.521563, -122.677433);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  Future<Position> determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error("Location services are disabled");
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error("Location permission denied");
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error("Location permission are permanently denied");
-    }
-    Position position = await Geolocator.getCurrentPosition();
-    return position;
-  }
-
+  final myMap = MyMap();
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -76,9 +45,12 @@ class _InicioState extends State<Inicio> {
                       fit: BoxFit.contain,
                     ),
                   ),
-                  const Text(
+                  Text(
                     "Andarilho",
-                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: AppConfig.lightColors.primary),
                   )
                 ],
               ),
@@ -142,72 +114,7 @@ class _InicioState extends State<Inicio> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 50),
-                child: Stack(children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      height: AppConfig.screenSize.height * 0.4,
-                      width: AppConfig.screenSize.width * 0.9,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.amber),
-                      child: GoogleMap(
-                          onMapCreated: _onMapCreated,
-                          markers: markers,
-                          zoomControlsEnabled: false,
-                          mapType: MapType.normal,
-                          initialCameraPosition: initialCameraPosition),
-                    ),
-                  ),
-                  Positioned(
-                    right: 10,
-                    bottom: 10,
-                    child: FloatingActionButton.extended(
-                      onPressed: () async {
-                        Position position = await determinePosition();
-                        mapController.animateCamera(
-                          CameraUpdate.newCameraPosition(
-                            CameraPosition(
-                                target: LatLng(
-                                    position.latitude, position.longitude),
-                                zoom: 14),
-                          ),
-                        );
-                        markers.clear();
-                        markers.add(
-                          Marker(
-                            markerId: const MarkerId("currentLocation"),
-                            position:
-                                LatLng(position.latitude, position.longitude),
-                          ),
-                        );
-                        setState(() {});
-                      },
-                      label: const Text("Minha localização"),
-                      icon: Icon(Icons.location_on),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                      width: AppConfig.screenSize.width * 0.9,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black,
-                            ),
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          labelText: 'Pesquisar...',
-                        ),
-                      ),
-                    ),
-                  ),
-                ]),
-              )
+              MyMap()
             ],
           ),
         ),

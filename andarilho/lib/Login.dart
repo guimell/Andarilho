@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -78,9 +79,12 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text("Informe seu email para entrar:"),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  "Informe seu email para entrar:",
+                  style: TextStyle(color: AppConfig.lightColors.primary),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -90,7 +94,8 @@ class _LoginPageState extends State<LoginPage> {
                     controller: email,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide:
+                            BorderSide(color: AppConfig.lightColors.primary),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'E-mail :',
@@ -98,7 +103,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              const Text("Infome sua senha:"),
+              Text(
+                "Infome sua senha:",
+                style: TextStyle(color: AppConfig.lightColors.primary),
+              ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: SizedBox(

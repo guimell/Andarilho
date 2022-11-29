@@ -1,7 +1,11 @@
+import 'dart:async';
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'avaliacoes.dart';
 
@@ -242,6 +246,147 @@ class _ContainerChatState extends State<ContainerChat> {
           ),
         )
       ],
+    );
+  }
+}
+
+class MyMap extends StatefulWidget {
+  const MyMap({Key? key}) : super(key: key);
+
+  @override
+  State<MyMap> createState() => _MyMapState();
+}
+
+class _MyMapState extends State<MyMap> {
+  //creating map
+  late GoogleMapController mapController;
+  // starting position
+  static const CameraPosition initialCameraPosition =
+      CameraPosition(target: LatLng(45.521563, -122.677433), zoom: 14);
+  //creating markers
+  Set<Marker> markers = {};
+
+  final LatLng _center = const LatLng(45.521563, -122.677433);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+  //getting current location
+  final LocationSettings locationSettings = const LocationSettings(
+    accuracy: LocationAccuracy.high,
+    distanceFilter: 100,
+  );
+
+  Position? currentPosition;
+  @override
+  void initState() {
+    super.initState();
+    updatePosiiton();
+  }
+
+  void animateTo(Position position) {
+    mapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+            target: LatLng(position.latitude, position.longitude), zoom: 14),
+      ),
+    );
+  }
+
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error("Location services are disabled");
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error("Location permission denied");
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error("Location permission are permanently denied");
+    }
+    Position position = await Geolocator.getCurrentPosition();
+    return position;
+  }
+
+  void updatePosiiton() async {
+    for (int i = 0;;) {
+      currentPosition = await determinePosition();
+      log(currentPosition.toString());
+      if (currentPosition == null) {
+        return;
+      }
+
+      animateTo(currentPosition!);
+      markers.clear();
+      markers.add(
+        Marker(
+          markerId: const MarkerId("currentLocation"),
+          position:
+              LatLng(currentPosition!.latitude, currentPosition!.longitude),
+        ),
+      );
+      setState(() {});
+      await Future.delayed(Duration(seconds: 10));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 50),
+      child: Stack(children: [
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+              height: AppConfig.screenSize.height * 0.4,
+              width: AppConfig.screenSize.width * 0.9,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: Colors.amber),
+              child: GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  markers: markers,
+                  zoomControlsEnabled: false,
+                  mapType: MapType.normal,
+                  initialCameraPosition: initialCameraPosition)),
+        ),
+        Positioned(
+            right: 10,
+            bottom: 10,
+            child: FloatingActionButton(
+              backgroundColor: AppConfig.lightColors.primary,
+              foregroundColor: AppConfig.lightColors.secondary,
+              mini: true,
+              onPressed: () {
+                animateTo(currentPosition!);
+              },
+              child: Icon(Icons.location_searching_outlined),
+            )),
+        Align(
+          alignment: Alignment.center,
+          child: SizedBox(
+            width: AppConfig.screenSize.width * 0.9,
+            child: TextFormField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppConfig.lightColors.primary,
+                  ),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                labelText: 'Pesquisar...',
+              ),
+            ),
+          ),
+        ),
+      ]),
     );
   }
 }

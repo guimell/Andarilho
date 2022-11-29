@@ -126,7 +126,7 @@ class _CadastroState extends State<Cadastro> {
                     controller: Cadastro.cadastroNomeCompleto,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Nome Completo :',

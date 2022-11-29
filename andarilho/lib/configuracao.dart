@@ -16,7 +16,6 @@ class Configuracao extends StatefulWidget {
 }
 
 class _ConfiguracaoState extends State<Configuracao> {
-  var nome = Cadastro.cadastroNomeCompleto;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +55,7 @@ class _ConfiguracaoState extends State<Configuracao> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        nome.text,
+                        Cadastro.cadastroNomeCompleto.text,
                         textAlign: TextAlign.center,
                       ),
                     ),

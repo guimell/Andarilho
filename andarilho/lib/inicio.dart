@@ -18,7 +18,7 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
-  final myMap = MyMap();
+  final myMap = const MyMap();
   @override
   Widget build(BuildContext context) {
     AppConfig.screenSize = MediaQuery.of(context).size;
@@ -114,7 +114,7 @@ class _InicioState extends State<Inicio> {
                   ),
                 ],
               ),
-              MyMap()
+              const MyMap()
             ],
           ),
         ),

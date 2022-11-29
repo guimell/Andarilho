@@ -358,16 +358,17 @@ class _MyMapState extends State<MyMap> {
                   initialCameraPosition: initialCameraPosition)),
         ),
         Positioned(
-          right: 10,
-          bottom: 10,
-          child: FloatingActionButton.extended(
-            onPressed: () async {
-              animateTo(currentPosition!);
-            },
-            label: const Text("Minha localização"),
-            icon: Icon(Icons.location_on),
-          ),
-        ),
+            right: 10,
+            bottom: 10,
+            child: FloatingActionButton(
+              backgroundColor: AppConfig.lightColors.primary,
+              foregroundColor: AppConfig.lightColors.secondary,
+              mini: true,
+              onPressed: () {
+                animateTo(currentPosition!);
+              },
+              child: Icon(Icons.location_searching_outlined),
+            )),
         Align(
           alignment: Alignment.center,
           child: SizedBox(

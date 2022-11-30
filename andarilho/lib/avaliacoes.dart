@@ -84,7 +84,7 @@ class _AvaliacaoState extends State<Avaliacao> {
                       Text(
                         "Avalie os serviços",
                         style: TextStyle(
-                            color: AppConfig.darkColors.onSecondary,
+                            color: AppConfig.lightColors.onSecondary,
                             fontWeight: FontWeight.bold),
                       ),
                     ],

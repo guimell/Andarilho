@@ -30,18 +30,18 @@ class _CadastroEnderecoState extends State<CadastroEndereco> {
                   width: AppConfig.screenSize.width * 0.9,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: AppConfig.darkColors.onPrimary),
+                      color: AppConfig.lightColors.onPrimary),
                   child: Column(
                     children: [
                       Text(
                         "CADASTRE O ENDEREÇO DO LOCAL DO SEU SERVIÇO",
                         style: TextStyle(
-                            color: AppConfig.darkColors.primary,
+                            color: AppConfig.lightColors.primary,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "Caso seja seriço autonomo, cadastre endereço residencial",
-                        style: TextStyle(color: AppConfig.darkColors.primary),
+                        style: TextStyle(color: AppConfig.lightColors.primary),
                       ),
                     ],
                   ),
@@ -63,12 +63,20 @@ class _CadastroEnderecoState extends State<CadastroEndereco> {
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Colors.black,
+                                      borderSide: BorderSide(
+                                          color:
+                                              AppConfig.lightColors.onPrimary),
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: AppConfig.lightColors.primary,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
-                                    labelText: 'Pesquisar...',
+                                    labelText: "Pesquisar...",
+                                    labelStyle: TextStyle(
+                                        color: AppConfig.lightColors.onPrimary),
                                   ),
                                 ),
                               ),
@@ -88,12 +96,20 @@ class _CadastroEnderecoState extends State<CadastroEndereco> {
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Colors.black,
+                                      borderSide: BorderSide(
+                                        color: AppConfig.lightColors.onPrimary,
+                                      ),
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: AppConfig.lightColors.primary,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
                                     labelText: 'Pesquisar...',
+                                    labelStyle: TextStyle(
+                                        color: AppConfig.lightColors.onPrimary),
                                   ),
                                 ),
                               ),
@@ -121,12 +137,20 @@ class _CadastroEnderecoState extends State<CadastroEndereco> {
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Colors.black,
+                                      borderSide: BorderSide(
+                                          color:
+                                              AppConfig.lightColors.onPrimary),
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: AppConfig.lightColors.primary,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
                                     labelText: 'Pesquisar...',
+                                    labelStyle: TextStyle(
+                                        color: AppConfig.lightColors.onPrimary),
                                   ),
                                 ),
                               ),
@@ -146,12 +170,20 @@ class _CadastroEnderecoState extends State<CadastroEndereco> {
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Colors.black,
+                                      borderSide: BorderSide(
+                                        color: AppConfig.lightColors.onPrimary,
+                                      ),
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: AppConfig.lightColors.primary,
                                       ),
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
                                     labelText: 'Pesquisar...',
+                                    labelStyle: TextStyle(
+                                        color: AppConfig.lightColors.onPrimary),
                                   ),
                                 ),
                               ),
@@ -174,12 +206,19 @@ class _CadastroEnderecoState extends State<CadastroEndereco> {
                           child: TextFormField(
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
+                                borderSide: BorderSide(
+                                    color: AppConfig.lightColors.onPrimary),
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: AppConfig.lightColors.primary,
                                 ),
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
                               labelText: 'Pesquisar...',
+                              labelStyle: TextStyle(
+                                  color: AppConfig.lightColors.onPrimary),
                             ),
                           ),
                         ),

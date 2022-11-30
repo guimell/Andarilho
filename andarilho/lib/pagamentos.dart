@@ -75,7 +75,7 @@ class _PagamentosState extends State<Pagamentos> {
                     Text(
                       "Consultar aqui os pagametnos",
                       style: TextStyle(
-                          color: AppConfig.darkColors.onSecondary,
+                          color: AppConfig.lightColors.onSecondary,
                           fontWeight: FontWeight.bold),
                     ),
                   ],

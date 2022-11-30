@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: AppConfig.screenSize.width * 0.3,
                     width: AppConfig.screenSize.width * 0.3,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppConfig.lightColors.onPrimary,
                       borderRadius: BorderRadius.circular(360),
                     ),
                     child: Image.asset(
@@ -101,7 +101,15 @@ class _LoginPageState extends State<LoginPage> {
                             BorderSide(color: AppConfig.lightColors.primary),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       labelText: 'E-mail :',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
@@ -128,10 +136,20 @@ class _LoginPageState extends State<LoginPage> {
                             });
                           }),
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
+                        ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Senha :',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),

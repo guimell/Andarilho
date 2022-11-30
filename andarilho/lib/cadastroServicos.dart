@@ -33,12 +33,19 @@ class _CadastroServicosState extends State<CadastroServicos> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                        borderSide:
+                            BorderSide(color: AppConfig.lightColors.onPrimary),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
                         ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Pesquisar...',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
@@ -53,12 +60,20 @@ class _CadastroServicosState extends State<CadastroServicos> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
                         ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Pesquisar...',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
@@ -73,12 +88,19 @@ class _CadastroServicosState extends State<CadastroServicos> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                        borderSide:
+                            BorderSide(color: AppConfig.lightColors.onPrimary),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
                         ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Pesquisar...',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
@@ -93,12 +115,20 @@ class _CadastroServicosState extends State<CadastroServicos> {
                   child: TextFormField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
                         ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Pesquisar...',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),

@@ -124,10 +124,20 @@ class _CadastroState extends State<Cadastro> {
                     controller: Cadastro.cadastroNomeCompleto,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.white),
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
+                        ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Nome Completo :',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
@@ -140,10 +150,20 @@ class _CadastroState extends State<Cadastro> {
                     controller: cadastroEmail,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
+                        ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'E-mail :',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
@@ -175,10 +195,20 @@ class _CadastroState extends State<Cadastro> {
                       child: TextFormField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: BorderSide(
+                              color: AppConfig.lightColors.onPrimary,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppConfig.lightColors.primary,
+                            ),
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           labelText: 'Data Nascimento :',
+                          labelStyle:
+                              TextStyle(color: AppConfig.lightColors.onPrimary),
                         ),
                       ),
                     ),
@@ -194,10 +224,20 @@ class _CadastroState extends State<Cadastro> {
                     controller: cadastroCPF,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.black),
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
+                        ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'CPF :',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
@@ -214,10 +254,20 @@ class _CadastroState extends State<Cadastro> {
                         obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: BorderSide(
+                              color: AppConfig.lightColors.onPrimary,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppConfig.lightColors.primary,
+                            ),
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           labelText: 'Senha :',
+                          labelStyle:
+                              TextStyle(color: AppConfig.lightColors.onPrimary),
                         ),
                       ),
                     ),
@@ -231,10 +281,20 @@ class _CadastroState extends State<Cadastro> {
                         obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: BorderSide(
+                              color: AppConfig.lightColors.onPrimary,
+                            ),
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppConfig.lightColors.primary,
+                            ),
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           labelText: 'Confirmar Senha :',
+                          labelStyle:
+                              TextStyle(color: AppConfig.lightColors.onPrimary),
                         ),
                       ),
                     ),

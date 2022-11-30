@@ -22,7 +22,7 @@ class AvaliaContainer extends StatelessWidget {
             width: AppConfig.screenSize.width * 0.7,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
-              color: AppConfig.darkColors.onPrimary,
+              color: AppConfig.lightColors.onPrimary,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
@@ -34,7 +34,7 @@ class AvaliaContainer extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppConfig.darkColors.primary),
+                          color: AppConfig.lightColors.primary),
                       child: const Icon(
                         Icons.person,
                         size: 40,
@@ -94,7 +94,7 @@ class PagamentoContainer extends StatelessWidget {
             width: AppConfig.screenSize.width * 0.7,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
-              color: AppConfig.darkColors.onPrimary,
+              color: AppConfig.lightColors.onPrimary,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
@@ -106,7 +106,7 @@ class PagamentoContainer extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppConfig.darkColors.primary),
+                          color: AppConfig.lightColors.primary),
                       child: const Icon(
                         Icons.person,
                         size: 40,
@@ -118,7 +118,7 @@ class PagamentoContainer extends StatelessWidget {
                     children: [
                       Text(
                         "QUENTINHAS MARIA",
-                        style: TextStyle(color: AppConfig.darkColors.primary),
+                        style: TextStyle(color: AppConfig.lightColors.primary),
                         textAlign: TextAlign.center,
                       ),
                       Text("PAGAMENTO CONCLUIDO")
@@ -145,7 +145,7 @@ class InicioContainer extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppConfig.darkColors.onPrimary),
+            color: AppConfig.lightColors.onPrimary),
         height: AppConfig.screenSize.height * 0.13,
         width: AppConfig.screenSize.width * 0.25,
         child: Image.asset(image),
@@ -200,10 +200,19 @@ class _ConfigPerfilFormsState extends State<ConfigPerfilForms> {
       child: TextFormField(
         decoration: InputDecoration(
           border: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black),
+            borderSide: BorderSide(
+              color: AppConfig.lightColors.onPrimary,
+            ),
             borderRadius: BorderRadius.circular(30.0),
           ),
           labelText: widget.text,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppConfig.lightColors.primary,
+            ),
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          labelStyle: TextStyle(color: AppConfig.lightColors.onPrimary),
         ),
       ),
     );
@@ -346,16 +355,17 @@ class _MyMapState extends State<MyMap> {
         Align(
           alignment: Alignment.center,
           child: Container(
-              height: AppConfig.screenSize.height * 0.4,
-              width: AppConfig.screenSize.width * 0.9,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.amber),
-              child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  markers: markers,
-                  zoomControlsEnabled: false,
-                  mapType: MapType.normal,
-                  initialCameraPosition: initialCameraPosition)),
+            height: AppConfig.screenSize.height * 0.4,
+            width: AppConfig.screenSize.width * 0.9,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), color: Colors.amber),
+            child: GoogleMap(
+                onMapCreated: _onMapCreated,
+                markers: markers,
+                zoomControlsEnabled: false,
+                mapType: MapType.normal,
+                initialCameraPosition: initialCameraPosition),
+          ),
         ),
         Positioned(
             right: 10,
@@ -381,7 +391,14 @@ class _MyMapState extends State<MyMap> {
                   ),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppConfig.lightColors.primary,
+                  ),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
                 labelText: 'Pesquisar...',
+                labelStyle: TextStyle(color: AppConfig.lightColors.onPrimary),
               ),
             ),
           ),

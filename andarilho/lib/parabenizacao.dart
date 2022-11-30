@@ -36,7 +36,7 @@ class Parabenizacao extends StatelessWidget {
                     height: AppConfig.screenSize.width * 0.5,
                     width: AppConfig.screenSize.width * 0.5,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppConfig.lightColors.onPrimary,
                       borderRadius: BorderRadius.circular(360),
                     ),
                     child: Image.asset(

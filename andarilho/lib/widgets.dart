@@ -6,7 +6,8 @@ import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:intl/date_symbol_data_http_request.dart';
+import 'package:intl/intl.dart';
 import 'avaliacoes.dart';
 
 class AvaliaContainer extends StatelessWidget {
@@ -419,6 +420,71 @@ class _MyMapState extends State<MyMap> {
           ),
         ),
       ]),
+    );
+  }
+}
+
+class MyDatePicker extends StatefulWidget {
+  @override
+  _MyDatePickerState createState() => _MyDatePickerState();
+}
+
+class _MyDatePickerState extends State<MyDatePicker> {
+  late double _height;
+  late double _width;
+
+  late String _setDate;
+
+  late String dateTime;
+
+  DateTime selectedDate = DateTime.now();
+
+  TextEditingController _dateController = TextEditingController();
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        initialDatePickerMode: DatePickerMode.day,
+        firstDate: DateTime(1930),
+        lastDate: DateTime(2023));
+    if (picked != null) {
+      setState(() {
+        selectedDate = picked;
+        _dateController.text = DateFormat.yMd().format(selectedDate);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _dateController.text = DateFormat.yMd().format(DateTime.now());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _height = MediaQuery.of(context).size.height;
+    _width = MediaQuery.of(context).size.width;
+    dateTime = DateFormat.yMd().format(DateTime.now());
+    return InkWell(
+      onTap: () {
+        _selectDate(context);
+      },
+      child: TextFormField(
+        style: TextStyle(fontSize: 20, color: AppConfig.lightColors.onPrimary),
+        textAlign: TextAlign.center,
+        enabled: false,
+        keyboardType: TextInputType.text,
+        controller: _dateController,
+        // onSaved: (String val) {
+        //   _setDate = val;
+        // },
+        decoration: const InputDecoration(
+          disabledBorder: UnderlineInputBorder(borderSide: BorderSide.none),
+          labelText: 'Escolha sua data',
+          contentPadding: EdgeInsets.only(left: 30),
+        ),
+      ),
     );
   }
 }

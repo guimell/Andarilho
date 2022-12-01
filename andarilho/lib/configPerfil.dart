@@ -33,7 +33,7 @@ class _ConfigPerfilState extends State<ConfigPerfil> {
                     child: Stack(children: [
                       Container(
                         decoration: BoxDecoration(
-                            color: AppConfig.darkColors.primary,
+                            color: AppConfig.lightColors.primary,
                             shape: BoxShape.circle),
                         child: const Icon(
                           Icons.person,
@@ -50,7 +50,7 @@ class _ConfigPerfilState extends State<ConfigPerfil> {
                               const BoxDecoration(shape: BoxShape.circle),
                           child: Icon(
                             Icons.flip_camera_ios,
-                            color: AppConfig.darkColors.secondary,
+                            color: AppConfig.lightColors.secondary,
                           ),
                         ),
                       )

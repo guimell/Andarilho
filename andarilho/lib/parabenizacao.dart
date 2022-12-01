@@ -36,7 +36,7 @@ class Parabenizacao extends StatelessWidget {
                     height: AppConfig.screenSize.width * 0.5,
                     width: AppConfig.screenSize.width * 0.5,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppConfig.lightColors.onPrimary,
                       borderRadius: BorderRadius.circular(360),
                     ),
                     child: Image.asset(
@@ -55,8 +55,12 @@ class Parabenizacao extends StatelessWidget {
                       color: AppConfig.lightColors.primary),
                 ),
               ),
-              const Text(
-                  "Cadastro concluido com sucesso, seu pedido esta em Análise"),
+              Text(
+                "Cadastro concluido com sucesso, seu pedido esta em Análise",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: SizedBox(

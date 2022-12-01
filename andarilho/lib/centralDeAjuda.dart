@@ -24,7 +24,14 @@ class _CentralDeAjudaState extends State<CentralDeAjuda> {
         child: FittedBox(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("data")],
+            children: [
+              Text(
+                "data",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              )
+            ],
           ),
         ),
       ),

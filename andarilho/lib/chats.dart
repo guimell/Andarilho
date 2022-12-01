@@ -26,8 +26,11 @@ class _ChatsState extends State<Chats> {
           child: Column(
             children: [
               chatStatus != null
-                  ? const Text(
+                  ? Text(
                       "Você nao tem chats em aberto",
+                      style: TextStyle(
+                        color: AppConfig.lightColors.onPrimary,
+                      ),
                     )
                   : ContainerChat()
             ],

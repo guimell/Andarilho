@@ -84,14 +84,19 @@ class _AvaliacaoState extends State<Avaliacao> {
                       Text(
                         "Avalie os serviços",
                         style: TextStyle(
-                            color: AppConfig.darkColors.onSecondary,
+                            color: AppConfig.lightColors.onPrimary,
                             fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                 ),
               ),
-              const Text("Faça sua avaliação dos ultimos serviços contratados"),
+              Text(
+                "Faça sua avaliação dos ultimos serviços contratados",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
               const AvaliaContainer(),
               const AvaliaContainer(),
               const AvaliaContainer(),

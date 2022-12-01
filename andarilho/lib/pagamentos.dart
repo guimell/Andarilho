@@ -75,16 +75,19 @@ class _PagamentosState extends State<Pagamentos> {
                     Text(
                       "Consultar aqui os pagametnos",
                       style: TextStyle(
-                          color: AppConfig.darkColors.onSecondary,
+                          color: AppConfig.lightColors.onSecondary,
                           fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
               ),
             ),
-            const Text(
+            Text(
               "Veja os pagamentos e andamentos de suas contatrações",
               textAlign: TextAlign.center,
+              style: TextStyle(
+                color: AppConfig.lightColors.onPrimary,
+              ),
             ),
             const PagamentoContainer()
           ],

@@ -20,10 +20,13 @@ class _CadastroServicosState extends State<CadastroServicos> {
         child: FittedBox(
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 50),
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
                 child: Text(
                   "Informe o nome do seu SERVIÇO",
+                  style: TextStyle(
+                    color: AppConfig.lightColors.onPrimary,
+                  ),
                 ),
               ),
               Padding(
@@ -31,91 +34,127 @@ class _CadastroServicosState extends State<CadastroServicos> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.9,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                        borderSide:
+                            BorderSide(color: AppConfig.lightColors.onPrimary),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
                         ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Pesquisar...',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
               ),
-              const Text(
+              Text(
                 "Informe seu CNPJ ou CPF",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.9,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
                         ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Pesquisar...',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
               ),
-              const Text(
+              Text(
                 "Informe o TIPO DO SEU SERVIÇO",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.9,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                        borderSide:
+                            BorderSide(color: AppConfig.lightColors.onPrimary),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
                         ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Pesquisar...',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
               ),
-              const Text(
+              Text(
                 "Informe a CATEGORIA DO SEU SERVIÇO",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.9,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: AppConfig.lightColors.primary,
                         ),
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       labelText: 'Pesquisar...',
+                      labelStyle:
+                          TextStyle(color: AppConfig.lightColors.onPrimary),
                     ),
                   ),
                 ),
               ),
-              const Text("Envie foto do seu documento de identidade"),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      primary: AppConfig.lightColors.primary),
-                  onPressed: () {},
-                  child: const Text("CLIQUE PARA ENVIAR FOTO DA FRENTE"),
+              Text(
+                "Envie foto do seu documento de identidade",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
                 ),
               ),
-              const Text("Envie foto do seu documento de identidade"),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: ElevatedButton(
@@ -124,7 +163,34 @@ class _CadastroServicosState extends State<CadastroServicos> {
                           borderRadius: BorderRadius.circular(10.0)),
                       primary: AppConfig.lightColors.primary),
                   onPressed: () {},
-                  child: const Text("CLIQUE PARA ENVIAR FOTO DO VERSO"),
+                  child: Text(
+                    "CLIQUE PARA ENVIAR FOTO DA FRENTE",
+                    style: TextStyle(
+                      color: AppConfig.lightColors.onPrimary,
+                    ),
+                  ),
+                ),
+              ),
+              Text(
+                "Envie foto do seu documento de identidade",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      primary: AppConfig.lightColors.primary),
+                  onPressed: () {},
+                  child: Text(
+                    "CLIQUE PARA ENVIAR FOTO DO VERSO",
+                    style: TextStyle(
+                      color: AppConfig.lightColors.onPrimary,
+                    ),
+                  ),
                 ),
               ),
               Padding(

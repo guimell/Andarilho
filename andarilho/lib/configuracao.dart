@@ -36,7 +36,7 @@ class _ConfiguracaoState extends State<Configuracao> {
                       alignment: Alignment.topLeft,
                       child: Container(
                         decoration: BoxDecoration(
-                            color: AppConfig.darkColors.primary,
+                            color: AppConfig.lightColors.primary,
                             shape: BoxShape.circle),
                         child: const Icon(
                           Icons.person,
@@ -57,6 +57,9 @@ class _ConfiguracaoState extends State<Configuracao> {
                       child: Text(
                         Cadastro.cadastroNomeCompleto.text,
                         textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
                       ),
                     ),
                   ),

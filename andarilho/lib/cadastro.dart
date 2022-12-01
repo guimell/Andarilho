@@ -179,11 +179,11 @@ class _CadastroState extends State<Cadastro> {
                       items: const [
                         DropdownMenuItem(
                           value: 1,
-                          child: Text("Male"),
+                          child: Text("Masculino"),
                         ),
                         DropdownMenuItem(
                           value: 2,
-                          child: Text("Female"),
+                          child: Text("Feminino"),
                         ),
                       ],
                       onChanged: (value) {

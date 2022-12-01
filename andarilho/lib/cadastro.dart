@@ -176,14 +176,22 @@ class _CadastroState extends State<Cadastro> {
                 children: [
                   DropdownButton<int>(
                       value: selectedValue,
-                      items: const [
+                      items: [
                         DropdownMenuItem(
                           value: 1,
-                          child: Text("Masculino"),
+                          child: Text(
+                            "Masculino",
+                            style: TextStyle(
+                                color: AppConfig.lightColors.onPrimary),
+                          ),
                         ),
                         DropdownMenuItem(
                           value: 2,
-                          child: Text("Feminino"),
+                          child: Text(
+                            "Feminino",
+                            style: TextStyle(
+                                color: AppConfig.lightColors.onPrimary),
+                          ),
                         ),
                       ],
                       onChanged: (value) {

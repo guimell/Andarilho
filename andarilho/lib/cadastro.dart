@@ -121,6 +121,7 @@ class _CadastroState extends State<Cadastro> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     controller: Cadastro.cadastroNomeCompleto,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -147,6 +148,7 @@ class _CadastroState extends State<Cadastro> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     controller: cadastroEmail,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -193,6 +195,8 @@ class _CadastroState extends State<Cadastro> {
                     child: SizedBox(
                       width: AppConfig.screenSize.width * 0.3,
                       child: TextFormField(
+                        style:
+                            TextStyle(color: AppConfig.lightColors.onPrimary),
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -221,6 +225,7 @@ class _CadastroState extends State<Cadastro> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     controller: cadastroCPF,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -250,6 +255,8 @@ class _CadastroState extends State<Cadastro> {
                     child: SizedBox(
                       width: AppConfig.screenSize.width * 0.3,
                       child: TextFormField(
+                        style:
+                            TextStyle(color: AppConfig.lightColors.onPrimary),
                         controller: cadastroSenha,
                         obscureText: true,
                         decoration: InputDecoration(
@@ -277,6 +284,8 @@ class _CadastroState extends State<Cadastro> {
                     child: SizedBox(
                       width: AppConfig.screenSize.width * 0.3,
                       child: TextFormField(
+                        style:
+                            TextStyle(color: AppConfig.lightColors.onPrimary),
                         controller: cadastroConfirmaSenha,
                         obscureText: true,
                         decoration: InputDecoration(

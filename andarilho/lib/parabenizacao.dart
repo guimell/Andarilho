@@ -55,8 +55,12 @@ class Parabenizacao extends StatelessWidget {
                       color: AppConfig.lightColors.primary),
                 ),
               ),
-              const Text(
-                  "Cadastro concluido com sucesso, seu pedido esta em Análise"),
+              Text(
+                "Cadastro concluido com sucesso, seu pedido esta em Análise",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: SizedBox(

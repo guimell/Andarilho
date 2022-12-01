@@ -57,6 +57,9 @@ class _ConfiguracaoState extends State<Configuracao> {
                       child: Text(
                         Cadastro.cadastroNomeCompleto.text,
                         textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
                       ),
                     ),
                   ),

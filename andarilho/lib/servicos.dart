@@ -85,20 +85,31 @@ class _ServicosState extends State<Servicos> {
                       Text(
                         "INDIQUE SUA REGIÃO",
                         style: TextStyle(
-                            color: AppConfig.lightColors.onSecondary,
+                            color: AppConfig.lightColors.onPrimary,
                             fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
                 ),
               ),
-              const Text("Informe seu CPF"),
-              const Text("Iremos buscas os serviços mais proximos de você"),
+              Text(
+                "Informe seu CPF",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
+              Text(
+                "Iremos buscas os serviços mais proximos de você",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.9,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -138,10 +149,30 @@ class _ServicosState extends State<Servicos> {
                   child: const Text("QUERO ME TORNAR PARCEIRO"),
                 ),
               ),
-              const Text("Cadastre seu serviço,seu negocio ou sua empresa.\n"),
-              const Text("Ganhe visibilidade e encontre mais clienes\n"),
-              const Text("Ganhe mais com mais praticidade\n"),
-              const Text("Tenha segurança contra golpes.\n"),
+              Text(
+                "Cadastre seu serviço,seu negocio ou sua empresa.\n",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
+              Text(
+                "Ganhe visibilidade e encontre mais clienes\n",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
+              Text(
+                "Ganhe mais com mais praticidade\n",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
+              Text(
+                "Tenha segurança contra golpes.\n",
+                style: TextStyle(
+                  color: AppConfig.lightColors.onPrimary,
+                ),
+              ),
             ],
           ),
         ),

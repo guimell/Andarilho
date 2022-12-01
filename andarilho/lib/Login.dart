@@ -94,6 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     controller: email,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -123,6 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: SizedBox(
                   width: AppConfig.screenSize.width * 0.6,
                   child: TextFormField(
+                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
                     controller: senha,
                     obscureText: isObscure,
                     decoration: InputDecoration(
@@ -286,7 +288,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       'FAÇA SEU CADASTRO',
                       style: TextStyle(
-                          color: AppConfig.lightColors.onSecondary,
+                          color: AppConfig.lightColors.onPrimary,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -314,9 +316,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Direitos reservados ao grupo"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Direitos reservados ao grupo",
+                  style: TextStyle(
+                    color: AppConfig.lightColors.onPrimary,
+                  ),
+                ),
               )
             ],
           ),

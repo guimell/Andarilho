@@ -121,7 +121,12 @@ class PagamentoContainer extends StatelessWidget {
                         style: TextStyle(color: AppConfig.lightColors.primary),
                         textAlign: TextAlign.center,
                       ),
-                      Text("PAGAMENTO CONCLUIDO")
+                      Text(
+                        "PAGAMENTO CONCLUIDO",
+                        style: TextStyle(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                      )
                     ],
                   )
                 ],
@@ -177,7 +182,12 @@ class ButtonPerfil extends StatelessWidget {
               MaterialPageRoute(builder: (context) => classe),
             );
           },
-          child: Text(text),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: AppConfig.lightColors.onPrimary,
+            ),
+          ),
         ),
       ),
     );
@@ -198,6 +208,7 @@ class _ConfigPerfilFormsState extends State<ConfigPerfilForms> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        style: TextStyle(color: AppConfig.lightColors.onPrimary),
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderSide: BorderSide(
@@ -248,8 +259,11 @@ class _ContainerChatState extends State<ContainerChat> {
               borderRadius: BorderRadius.circular(20),
             ),
             width: AppConfig.screenSize.width * 0.2,
-            child: const Text(
+            child: Text(
               "data",
+              style: TextStyle(
+                color: AppConfig.lightColors.onPrimary,
+              ),
               textAlign: TextAlign.center,
             ),
           ),
@@ -384,6 +398,7 @@ class _MyMapState extends State<MyMap> {
           child: SizedBox(
             width: AppConfig.screenSize.width * 0.9,
             child: TextFormField(
+              style: TextStyle(color: AppConfig.lightColors.onPrimary),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide(

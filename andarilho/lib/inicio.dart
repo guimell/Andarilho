@@ -72,7 +72,12 @@ class _InicioState extends State<Inicio> {
                           child: const InicioContainer(
                             image: "assets/images/Aplicativo Andarilho (7).png",
                           )),
-                      const Text("Serviços")
+                      Text(
+                        "Serviços",
+                        style: TextStyle(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                      )
                     ],
                   ),
                   Column(
@@ -91,7 +96,12 @@ class _InicioState extends State<Inicio> {
                         child: const InicioContainer(
                             image: "assets/images/avaliacoes.png"),
                       ),
-                      const Text("Avaliações")
+                      Text(
+                        "Avaliações",
+                        style: TextStyle(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                      )
                     ],
                   ),
                   Column(
@@ -109,7 +119,12 @@ class _InicioState extends State<Inicio> {
                         child: const InicioContainer(
                             image: "assets/images/pagamentos.png"),
                       ),
-                      const Text("Pagamentos")
+                      Text(
+                        "Pagamentos",
+                        style: TextStyle(
+                          color: AppConfig.lightColors.onPrimary,
+                        ),
+                      )
                     ],
                   ),
                 ],

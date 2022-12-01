@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:andarilho/inicio.dart';
+import 'package:andarilho/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'config.dart';
@@ -194,32 +195,11 @@ class _CadastroState extends State<Cadastro> {
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: SizedBox(
                       width: AppConfig.screenSize.width * 0.3,
-                      child: TextFormField(
-                        style:
-                            TextStyle(color: AppConfig.lightColors.onPrimary),
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppConfig.lightColors.onPrimary,
-                            ),
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppConfig.lightColors.primary,
-                            ),
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          labelText: 'Data Nascimento :',
-                          labelStyle:
-                              TextStyle(color: AppConfig.lightColors.onPrimary),
-                        ),
-                      ),
+                      child: MyDatePicker(),
                     ),
                   ),
                 ],
               ),
-
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: SizedBox(
@@ -310,17 +290,6 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ],
               ),
-
-              // Container(
-              //   height: 200,
-              //   child: CupertinoDatePicker(
-              //     mode: CupertinoDatePickerMode.date,
-              //     initialDateTime: DateTime(2000, 8, 8),
-              //     onDateTimeChanged: (DateTime newDateTime) {
-              //       // Do something
-              //     },
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(

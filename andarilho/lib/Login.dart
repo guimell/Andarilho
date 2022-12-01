@@ -288,7 +288,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       'FAÇA SEU CADASTRO',
                       style: TextStyle(
-                          color: AppConfig.lightColors.onPrimary,
+                          color: AppConfig.lightColors.onSecondary,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

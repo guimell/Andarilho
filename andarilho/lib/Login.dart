@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -169,6 +170,18 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     onPressed: (() async {
+                      showCupertinoModalPopup(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return SizedBox(
+                            height: AppConfig.screenSize.height,
+                            child: const Align(
+                                alignment: Alignment.center,
+                                child: CircularProgressIndicator()),
+                          );
+                        },
+                      );
+
                       final uri = Uri.parse(
                           'https://api-andarilho.onrender.com/user/login');
                       final headers = {'Content-Type': 'application/json'};

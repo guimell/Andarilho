@@ -283,18 +283,23 @@ class MyMap extends StatefulWidget {
 
 class _MyMapState extends State<MyMap> {
   //creating map
-  late GoogleMapController mapController;
+  GoogleMapController? mapController;
+
   // starting position
   static const CameraPosition initialCameraPosition =
-      CameraPosition(target: LatLng(45.521563, -122.677433), zoom: 14);
-  //creating markers
-  Set<Marker> markers = {};
+      CameraPosition(target: LatLng(0, -0), zoom: 14);
 
-  final LatLng _center = const LatLng(45.521563, -122.677433);
+  //creating markers
+  // Set<Marker> markers = {};
+
+  bool positionInit = false;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
+
+  Widget? maps;
+  bool trackUser = true;
 
   //getting current location
   final LocationSettings locationSettings = const LocationSettings(
@@ -306,11 +311,31 @@ class _MyMapState extends State<MyMap> {
   @override
   void initState() {
     super.initState();
-    updatePosiiton();
+    maps = GoogleMap(
+      // onMapCreated: _onMapCreated,
+      onMapCreated: (GoogleMapController controller) {
+        mapController = controller;
+      },
+      markers: {
+        Marker(
+          markerId: const MarkerId("currentLocation"),
+          position: currentPosition == null
+              ? LatLng(0, 0)
+              : LatLng(currentPosition!.latitude, currentPosition!.longitude),
+        ),
+      },
+      zoomControlsEnabled: false,
+      mapType: MapType.normal,
+      initialCameraPosition: initialCameraPosition,
+    );
+    updatePosition();
   }
 
   void animateTo(Position position) {
-    mapController.animateCamera(
+    if (mapController == null) {
+      return;
+    }
+    mapController!.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
             target: LatLng(position.latitude, position.longitude), zoom: 14),
@@ -340,25 +365,36 @@ class _MyMapState extends State<MyMap> {
     return position;
   }
 
-  void updatePosiiton() async {
+  void updatePosition() async {
     for (int i = 0;;) {
       currentPosition = await determinePosition();
       log(currentPosition.toString());
       if (currentPosition == null) {
         return;
       }
+      log(trackUser.toString());
+      if (trackUser) {
+        animateTo(currentPosition!);
+      }
 
-      animateTo(currentPosition!);
-      markers.clear();
-      markers.add(
-        Marker(
-          markerId: const MarkerId("currentLocation"),
-          position:
-              LatLng(currentPosition!.latitude, currentPosition!.longitude),
-        ),
-      );
-      setState(() {});
-      await Future.delayed(Duration(seconds: 10));
+      // markers.clear();
+      // markers.add(
+      //   Marker(
+      //     markerId: const MarkerId("currentLocation"),
+      //     position:
+      //         LatLng(currentPosition!.latitude, currentPosition!.longitude),
+      //   ),
+      // );
+      // log(markers.toString());
+      positionInit = true;
+      if (mounted) {
+        setState(() {});
+        await Future.delayed(
+          const Duration(seconds: 1),
+        );
+      } else {
+        break;
+      }
     }
   }
 
@@ -373,50 +409,29 @@ class _MyMapState extends State<MyMap> {
             height: AppConfig.screenSize.height * 0.4,
             width: AppConfig.screenSize.width * 0.9,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: Colors.amber),
-            child: GoogleMap(
-                onMapCreated: _onMapCreated,
-                markers: markers,
-                zoomControlsEnabled: false,
-                mapType: MapType.normal,
-                initialCameraPosition: initialCameraPosition),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: positionInit
+                ? maps
+                : const Align(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator()),
           ),
         ),
         Positioned(
-            right: 10,
-            bottom: 10,
-            child: FloatingActionButton(
-              backgroundColor: AppConfig.lightColors.primary,
-              foregroundColor: AppConfig.lightColors.secondary,
-              mini: true,
-              onPressed: () {
+          right: 10,
+          bottom: 10,
+          child: FloatingActionButton(
+            backgroundColor: AppConfig.lightColors.primary,
+            foregroundColor: AppConfig.lightColors.secondary,
+            mini: true,
+            onPressed: () {
+              if (!trackUser) {
                 animateTo(currentPosition!);
-              },
-              child: Icon(Icons.location_searching_outlined),
-            )),
-        Align(
-          alignment: Alignment.center,
-          child: SizedBox(
-            width: AppConfig.screenSize.width * 0.9,
-            child: TextFormField(
-              style: TextStyle(color: AppConfig.lightColors.onPrimary),
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppConfig.lightColors.primary,
-                  ),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: AppConfig.lightColors.primary,
-                  ),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                labelText: 'Pesquisar...',
-                labelStyle: TextStyle(color: AppConfig.lightColors.onPrimary),
-              ),
-            ),
+              }
+              trackUser = !trackUser;
+            },
+            child: Icon(Icons.location_searching_outlined),
           ),
         ),
       ]),

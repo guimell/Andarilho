@@ -20,6 +20,7 @@ class _ServicosState extends State<Servicos> {
       appBar: AppBar(
         title: const Text("Serviços"),
       ),
+      resizeToAvoidBottomInset: false,
       bottomNavigationBar: AppConfig.navBar(context),
       body: Center(
         child: FittedBox(

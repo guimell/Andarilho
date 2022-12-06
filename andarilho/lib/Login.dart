@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppConfig.lightColors.background,
       body: Center(
         child: FittedBox(

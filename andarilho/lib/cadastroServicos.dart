@@ -16,6 +16,7 @@ class _CadastroServicosState extends State<CadastroServicos> {
       appBar: AppBar(
         title: const Text("Cadastro Serviços"),
       ),
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: FittedBox(
           child: Column(

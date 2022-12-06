@@ -20,6 +20,7 @@ class _CadastroEnderecoState extends State<CadastroEndereco> {
       appBar: AppBar(
         title: const Text("Cadastro"),
       ),
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.only(top: 50),

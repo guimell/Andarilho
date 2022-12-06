@@ -170,6 +170,19 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     onPressed: (() async {
+                      if (email.text == "" && senha.text == "") {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Inicio(
+                              title: "Inicio",
+                            ),
+                          ),
+                          (Route<dynamic> route) => false,
+                        );
+                        return;
+                      }
+
                       showCupertinoModalPopup(
                         context: context,
                         builder: (BuildContext context) {
@@ -202,6 +215,36 @@ class _LoginPageState extends State<LoginPage> {
                       int statusCode = response.statusCode;
                       String responseBody = response.body;
                       log(responseBody);
+
+                      if (statusCode != 200) {
+                        Navigator.of(context).pop();
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: const Text("Dados Incorretos"),
+                            content: const Text("Tente novamente"),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                  email.clear();
+                                  senha.clear();
+                                },
+                                child: Container(
+                                  color: AppConfig.lightColors.primary,
+                                  padding: const EdgeInsets.all(14),
+                                  child: Text(
+                                    "okay",
+                                    style: TextStyle(
+                                        color: AppConfig.lightColors.onPrimary),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                        return;
+                      }
                       token = await jsonDecode(response.body)["data"]["token"];
                       log(token);
 

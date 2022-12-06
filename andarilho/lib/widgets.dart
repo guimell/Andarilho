@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:ui';
 
 import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 // import 'package:intl/date_symbol_data_http_request.dart';
 // import 'package:intl/intl.dart';
 import 'avaliacoes.dart';
@@ -300,45 +300,41 @@ class _MyMapState extends State<MyMap> {
 
   Widget? maps;
   bool trackUser = true;
+  double mapZoom = 14;
 
   //getting current location
-  final LocationSettings locationSettings = const LocationSettings(
-    accuracy: LocationAccuracy.high,
-    distanceFilter: 100,
-  );
 
-  Position? currentPosition;
+  LocationData? currentLocation;
+  void getCurrentLocation() {
+    Location location = Location();
+
+    location.getLocation().then(
+      (location) {
+        currentLocation = location;
+        updatePosition();
+      },
+    );
+    location.onLocationChanged.listen((newLoc) {
+      currentLocation = newLoc;
+      updatePosition();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    maps = GoogleMap(
-      // onMapCreated: _onMapCreated,
-      onMapCreated: (GoogleMapController controller) {
-        mapController = controller;
-      },
-      markers: {
-        Marker(
-          markerId: const MarkerId("currentLocation"),
-          position: currentPosition == null
-              ? LatLng(0, 0)
-              : LatLng(currentPosition!.latitude, currentPosition!.longitude),
-        ),
-      },
-      zoomControlsEnabled: false,
-      mapType: MapType.normal,
-      initialCameraPosition: initialCameraPosition,
-    );
-    updatePosition();
+    getCurrentLocation();
   }
 
-  void animateTo(Position position) {
+  void animateTo(LocationData location) {
     if (mapController == null) {
       return;
     }
     mapController!.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-            target: LatLng(position.latitude, position.longitude), zoom: 14),
+            target: LatLng(location.latitude!, location.longitude!),
+            zoom: mapZoom),
       ),
     );
   }
@@ -366,35 +362,15 @@ class _MyMapState extends State<MyMap> {
   }
 
   void updatePosition() async {
-    for (int i = 0;;) {
-      currentPosition = await determinePosition();
-      log(currentPosition.toString());
-      if (currentPosition == null) {
-        return;
-      }
-      log(trackUser.toString());
-      if (trackUser) {
-        animateTo(currentPosition!);
-      }
+    log(trackUser.toString());
+    log(currentLocation.toString());
+    if (trackUser) {
+      animateTo(currentLocation!);
+    }
 
-      // markers.clear();
-      // markers.add(
-      //   Marker(
-      //     markerId: const MarkerId("currentLocation"),
-      //     position:
-      //         LatLng(currentPosition!.latitude, currentPosition!.longitude),
-      //   ),
-      // );
-      // log(markers.toString());
-      positionInit = true;
-      if (mounted) {
-        setState(() {});
-        await Future.delayed(
-          const Duration(seconds: 1),
-        );
-      } else {
-        break;
-      }
+    positionInit = true;
+    if (mounted) {
+      setState(() {});
     }
   }
 
@@ -402,39 +378,64 @@ class _MyMapState extends State<MyMap> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 50),
-      child: Stack(children: [
-        Align(
-          alignment: Alignment.center,
-          child: Container(
-            height: AppConfig.screenSize.height * 0.4,
-            width: AppConfig.screenSize.width * 0.9,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: AppConfig.screenSize.height * 0.4,
+              width: AppConfig.screenSize.width * 0.9,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: positionInit
+                  ? GoogleMap(
+                      onCameraMove: (CameraPosition cameraPosition) {
+                        mapZoom = cameraPosition.zoom;
+                      },
+                      onMapCreated: (GoogleMapController controller) {
+                        mapController = controller;
+                      },
+                      markers: {
+                        Marker(
+                          markerId: const MarkerId("currentLocation"),
+                          position: LatLng(currentLocation!.latitude!,
+                              currentLocation!.longitude!),
+                        ),
+                      },
+                      trafficEnabled: false,
+                      myLocationButtonEnabled: false,
+                      zoomControlsEnabled: false,
+                      mapType: MapType.normal,
+                      initialCameraPosition: initialCameraPosition,
+                    )
+                  : const Align(
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator()),
             ),
-            child: positionInit
-                ? maps
-                : const Align(
-                    alignment: Alignment.center,
-                    child: CircularProgressIndicator()),
           ),
-        ),
-        Positioned(
-          right: 10,
-          bottom: 10,
-          child: FloatingActionButton(
-            backgroundColor: AppConfig.lightColors.primary,
-            foregroundColor: AppConfig.lightColors.secondary,
-            mini: true,
-            onPressed: () {
-              if (!trackUser) {
-                animateTo(currentPosition!);
-              }
-              trackUser = !trackUser;
-            },
-            child: Icon(Icons.location_searching_outlined),
+          Positioned(
+            right: 10,
+            bottom: 10,
+            child: FloatingActionButton(
+              backgroundColor: AppConfig.lightColors.primary,
+              foregroundColor: AppConfig.lightColors.secondary,
+              mini: true,
+              onPressed: () {
+                if (!trackUser) {
+                  animateTo(currentLocation!);
+                }
+                setState(() {
+                  trackUser = !trackUser;
+                });
+              },
+              child: trackUser
+                  ? const Icon(Icons.location_searching_outlined)
+                  : const Icon(Icons.location_disabled),
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

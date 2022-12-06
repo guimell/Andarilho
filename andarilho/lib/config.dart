@@ -35,9 +35,8 @@ class AppConfig {
     surface: Color(0xff121212),
     onSurface: Colors.white,
   );
+  static int bottomNavIndex = 0;
   static BottomNavigationBar navBar(context) {
-    int indiceAtual = 0;
-
     final List<Widget> telas = [
       const Inicio(
         title: "inicio",
@@ -51,17 +50,18 @@ class AppConfig {
     ];
 
     void onTabTapped(int index) {
-      indiceAtual = index;
+      bottomNavIndex = index;
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => telas[indiceAtual]),
+        MaterialPageRoute(builder: (context) => telas[bottomNavIndex]),
         (Route<dynamic> route) => false,
       );
     }
 
     return BottomNavigationBar(
-      currentIndex: indiceAtual,
+      currentIndex: bottomNavIndex,
       onTap: onTabTapped,
+      unselectedItemColor: AppConfig.lightColors.primary.withAlpha(150),
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.person),

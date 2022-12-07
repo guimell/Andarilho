@@ -22,6 +22,7 @@ class _CadastroServicosState extends State<CadastroServicos> {
   TextEditingController cnpj = TextEditingController();
   TextEditingController tipoServico = TextEditingController();
   TextEditingController categoria = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -219,6 +220,7 @@ class _CadastroServicosState extends State<CadastroServicos> {
                       ),
                       backgroundColor: AppConfig.lightColors.primary),
                   onPressed: () async {
+                    // loading animation
                     showCupertinoModalPopup(
                       context: context,
                       builder: (BuildContext context) {
@@ -231,9 +233,14 @@ class _CadastroServicosState extends State<CadastroServicos> {
                         );
                       },
                     );
-
-                    final uri = Uri.parse('https://10.0.2.2:8000/service');
-                    final headers = {'Content-Type': 'application/json'};
+                    log("aqui");
+                    log(AppConfig.token);
+                    final uri =
+                        Uri.parse('https://api-andarilho.onrender.com/service');
+                    final headers = {
+                      'Content-Type': 'application/json',
+                      "x-access-token": AppConfig.token
+                    };
                     Map<String, dynamic> body = {
                       'nome': nome.text,
                       'cnpj': cnpj.text,
@@ -253,6 +260,11 @@ class _CadastroServicosState extends State<CadastroServicos> {
                     int statusCode = response.statusCode;
                     String responseBody = response.body;
                     log(responseBody);
+                    log("AQ");
+                    log(response.body);
+                    log("AQ");
+                    log(response.toString());
+                    log("AQ");
 
                     if (statusCode != 200) {
                       Navigator.of(context).pop();
@@ -293,10 +305,8 @@ class _CadastroServicosState extends State<CadastroServicos> {
                       );
                       return;
                     }
-                    ;
-                    LoginPage.token =
-                        await jsonDecode(response.body)["data"]["token"];
-                    log(LoginPage.token);
+
+                    log(AppConfig.token);
 
                     log("NomeServiço:${nome.text} cnpj:${cnpj.text} tipoServiço:${tipoServico.text} categoria:${categoria.text}");
                     if (statusCode == 200) {
@@ -304,7 +314,7 @@ class _CadastroServicosState extends State<CadastroServicos> {
                           'https://api-andarilho.onrender.com/user/test');
                       final headers = {
                         'Content-Type': 'application/json',
-                        "x-access-token": LoginPage.token
+                        "x-access-token": AppConfig.token
                       };
 
                       String jsonBody = json.encode(body);

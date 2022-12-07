@@ -7,6 +7,7 @@ import 'historico.dart';
 class AppConfig {
   static Size screenSize = const Size(0, 0);
   static bool smallScreen = false;
+  static String token = "";
 
   static Brightness platformBrightness = Brightness.light;
   static ColorScheme lightColors = const ColorScheme(

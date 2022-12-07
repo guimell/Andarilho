@@ -11,7 +11,7 @@ import 'inicio.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
-  static String token = "";
+
   final String title;
 
   @override
@@ -256,9 +256,9 @@ class _LoginPageState extends State<LoginPage> {
                         );
                         return;
                       }
-                      LoginPage.token =
+                      AppConfig.token =
                           await jsonDecode(response.body)["data"]["token"];
-                      log(LoginPage.token);
+                      log(AppConfig.token);
 
                       log("Email:${email.text} Senha:${senha.text}");
                       if (statusCode == 200) {
@@ -266,7 +266,7 @@ class _LoginPageState extends State<LoginPage> {
                             'https://api-andarilho.onrender.com/user/test');
                         final headers = {
                           'Content-Type': 'application/json',
-                          "x-access-token": LoginPage.token
+                          "x-access-token": AppConfig.token
                         };
 
                         String jsonBody = json.encode(body);

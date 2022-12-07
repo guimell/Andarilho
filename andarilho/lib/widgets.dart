@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:andarilho/config.dart';
 import 'package:flutter/material.dart';

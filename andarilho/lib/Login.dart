@@ -11,7 +11,7 @@ import 'inicio.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
-
+  static String token = "";
   final String title;
 
   @override
@@ -21,7 +21,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController email = TextEditingController();
   TextEditingController senha = TextEditingController();
-  String token = "";
+
   bool isObscure = true;
 
   @override
@@ -221,8 +221,16 @@ class _LoginPageState extends State<LoginPage> {
                         showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
-                            title: const Text("Dados Incorretos"),
-                            content: const Text("Tente novamente"),
+                            title: Text(
+                              "Dados Incorretos",
+                              style: TextStyle(
+                                  color: AppConfig.lightColors.onPrimary),
+                            ),
+                            content: Text(
+                              "Tente novamente",
+                              style: TextStyle(
+                                  color: AppConfig.lightColors.onPrimary),
+                            ),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
@@ -245,8 +253,9 @@ class _LoginPageState extends State<LoginPage> {
                         );
                         return;
                       }
-                      token = await jsonDecode(response.body)["data"]["token"];
-                      log(token);
+                      LoginPage.token =
+                          await jsonDecode(response.body)["data"]["token"];
+                      log(LoginPage.token);
 
                       log("Email:${email.text} Senha:${senha.text}");
                       if (statusCode == 200) {
@@ -254,7 +263,7 @@ class _LoginPageState extends State<LoginPage> {
                             'https://api-andarilho.onrender.com/user/test');
                         final headers = {
                           'Content-Type': 'application/json',
-                          "x-access-token": token
+                          "x-access-token": LoginPage.token
                         };
 
                         String jsonBody = json.encode(body);

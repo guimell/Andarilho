@@ -5,6 +5,7 @@ import 'dart:developer';
 
 import 'package:andarilho/inicio.dart';
 import 'package:andarilho/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'config.dart';
@@ -26,6 +27,7 @@ class _CadastroState extends State<Cadastro> {
   TextEditingController cadastroCPF = TextEditingController();
   TextEditingController cadastroSenha = TextEditingController();
   TextEditingController cadastroConfirmaSenha = TextEditingController();
+  TextEditingController dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +38,32 @@ class _CadastroState extends State<Cadastro> {
 
     DateTime selectedDate = DateTime.now();
 
-    Future<void> _selectDate(BuildContext context) async {
+    Future<void> selectDate(BuildContext context) async {
       final DateTime? picked = await showDatePicker(
-          context: context,
-          initialDate: selectedDate,
-          firstDate: DateTime(2015, 8),
-          lastDate: DateTime(2101));
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              colorScheme: ColorScheme.light(
+                primary:
+                    AppConfig.lightColors.primary, // header background color
+                onPrimary: AppConfig.lightColors.onPrimary, // header text color
+                onSurface: AppConfig.lightColors.onPrimary, // body text color
+              ),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                  foregroundColor:
+                      AppConfig.lightColors.primary, // button text color
+                ),
+              ),
+            ),
+            child: child!,
+          );
+        },
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1930, 8),
+        lastDate: DateTime(2101),
+      );
       if (picked != null && picked != selectedDate) {
         setState(() {
           selectedDate = picked;
@@ -95,22 +117,25 @@ class _CadastroState extends State<Cadastro> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'CADASTRO',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30,
-                                color: AppConfig.lightColors.primary),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'ANDARILHO',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppConfig.lightColors.background,
-                                    fontStyle: FontStyle.italic),
-                              ),
-                            ],
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'CADASTRO',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  color: AppConfig.lightColors.primary),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'ANDARILHO',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppConfig.lightColors.background,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -203,24 +228,27 @@ class _CadastroState extends State<Cadastro> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: SizedBox(
-                      width: AppConfig.screenSize.width * 0.3,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppConfig.lightColors.onPrimary,
-                            ),
-                            borderRadius: BorderRadius.circular(30.0),
+                      width: AppConfig.screenSize.width * 0.2,
+                      child: InkWell(
+                        onTap: () {
+                          selectDate(context);
+                        },
+                        child: TextFormField(
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: AppConfig.lightColors.onPrimary),
+                          textAlign: TextAlign.center,
+                          enabled: false,
+                          keyboardType: TextInputType.text,
+                          controller: dateController,
+                          decoration: InputDecoration(
+                            disabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide.none),
+                            labelText: 'Data',
+                            labelStyle: TextStyle(
+                                color: AppConfig.lightColors.onPrimary),
+                            contentPadding: EdgeInsets.only(left: 30),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: AppConfig.lightColors.primary,
-                            ),
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          labelText: 'Data Nascimento :',
-                          labelStyle:
-                              TextStyle(color: AppConfig.lightColors.onPrimary),
                         ),
                       ),
                     ),
@@ -317,17 +345,6 @@ class _CadastroState extends State<Cadastro> {
                   ),
                 ],
               ),
-
-              // Container(
-              //   height: 200,
-              //   child: CupertinoDatePicker(
-              //     mode: CupertinoDatePickerMode.date,
-              //     initialDateTime: DateTime(2000, 8, 8),
-              //     onDateTimeChanged: (DateTime newDateTime) {
-              //       // Do something
-              //     },
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(

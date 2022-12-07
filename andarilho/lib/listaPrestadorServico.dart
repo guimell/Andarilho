@@ -58,6 +58,7 @@ class _ListaPrestadorServicoState extends State<ListaPrestadorServico> {
     for (int i = 0; i < listaServicos.length; i++) {
       listaServicosWidgets.add(
         Container(
+          height: AppConfig.screenSize.height * 0.2,
           width: AppConfig.screenSize.width * 0.5,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),

@@ -87,7 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
                   "Informe seu email para entrar:",
-                  style: TextStyle(color: AppConfig.lightColors.primary),
+                  style: TextStyle(
+                      color: AppConfig.lightColors.primary, fontSize: 20),
                 ),
               ),
               Padding(
@@ -118,7 +119,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Text(
                 "Infome sua senha:",
-                style: TextStyle(color: AppConfig.lightColors.primary),
+                style: TextStyle(
+                    color: AppConfig.lightColors.primary, fontSize: 20),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -130,9 +132,10 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: isObscure,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
-                          icon: Icon(isObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility),
+                          icon: Icon(
+                            isObscure ? Icons.visibility_off : Icons.visibility,
+                            color: AppConfig.lightColors.primary,
+                          ),
                           onPressed: () {
                             setState(() {
                               isObscure = !isObscure;
@@ -350,11 +353,14 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
-                    child: Text(
-                      'FAÇA SEU CADASTRO',
-                      style: TextStyle(
-                          color: AppConfig.lightColors.onSecondary,
-                          fontWeight: FontWeight.bold),
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'FAÇA SEU CADASTRO',
+                        style: TextStyle(
+                            color: AppConfig.lightColors.onSecondary,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
@@ -372,11 +378,14 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                     ),
-                    child: Text(
-                      'CONHEÇA O ANDARILHO',
-                      style: TextStyle(
-                          color: AppConfig.lightColors.onPrimary,
-                          fontWeight: FontWeight.bold),
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        'CONHEÇA O ANDARILHO',
+                        style: TextStyle(
+                            color: AppConfig.lightColors.onPrimary,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
@@ -386,8 +395,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   "Direitos reservados ao grupo",
                   style: TextStyle(
-                    color: AppConfig.lightColors.onPrimary,
-                  ),
+                      color: AppConfig.lightColors.onPrimary, fontSize: 15),
                 ),
               )
             ],

@@ -1,4 +1,5 @@
 import 'package:andarilho/cadastroServicos.dart';
+import 'package:andarilho/listaPrestadorServico.dart';
 import 'package:flutter/material.dart';
 import 'config.dart';
 
@@ -108,26 +109,22 @@ class _ServicosState extends State<Servicos> {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: SizedBox(
-                  width: AppConfig.screenSize.width * 0.9,
-                  child: TextFormField(
-                    style: TextStyle(color: AppConfig.lightColors.onPrimary),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppConfig.lightColors.onPrimary,
+                  width: AppConfig.screenSize.width * 0.7,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: AppConfig.lightColors.primary,
+                        backgroundColor: AppConfig.lightColors.primary),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ListaPrestadorServico(),
                         ),
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      labelText: 'Pesquisar...',
-                      labelStyle:
-                          TextStyle(color: AppConfig.lightColors.onPrimary),
-                    ),
+                      );
+                    },
+                    child: const Text("PRESTADORES DE SERVIÇO"),
                   ),
                 ),
               ),
@@ -136,8 +133,9 @@ class _ServicosState extends State<Servicos> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      primary: AppConfig.lightColors.primary),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      backgroundColor: AppConfig.lightColors.primary),
                   onPressed: () {
                     Navigator.push(
                       context,

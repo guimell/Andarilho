@@ -65,22 +65,25 @@ class _ServicosState extends State<Servicos> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'SERVIÇOS',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30,
-                                color: AppConfig.lightColors.primary),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'ANDARILHO',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppConfig.lightColors.background,
-                                    fontStyle: FontStyle.italic),
-                              ),
-                            ],
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'SERVIÇOS',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  color: AppConfig.lightColors.primary),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'ANDARILHO',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppConfig.lightColors.background,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -95,16 +98,9 @@ class _ServicosState extends State<Servicos> {
                 ),
               ),
               Text(
-                "Informe seu CPF",
+                "Iremos buscar os serviços mais proximos de você !",
                 style: TextStyle(
-                  color: AppConfig.lightColors.onPrimary,
-                ),
-              ),
-              Text(
-                "Iremos buscas os serviços mais proximos de você",
-                style: TextStyle(
-                  color: AppConfig.lightColors.onPrimary,
-                ),
+                    color: AppConfig.lightColors.onPrimary, fontSize: 15),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
@@ -155,7 +151,7 @@ class _ServicosState extends State<Servicos> {
                 ),
               ),
               Text(
-                "Ganhe visibilidade e encontre mais clienes\n",
+                "Ganhe visibilidade e encontre mais clientes\n",
                 style: TextStyle(
                   color: AppConfig.lightColors.onPrimary,
                 ),

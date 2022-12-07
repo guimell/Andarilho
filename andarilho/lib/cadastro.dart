@@ -54,6 +54,7 @@ class _CadastroState extends State<Cadastro> {
         title: Text(widget.title),
       ),
       backgroundColor: AppConfig.lightColors.background,
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: FittedBox(
           child: Column(
